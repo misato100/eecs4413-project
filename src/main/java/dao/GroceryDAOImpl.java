@@ -25,7 +25,7 @@ public class GroceryDAOImpl implements GroceryDAO {
 	}
 
 	private Connection getConnection() throws SQLException {
-		// Set the location of groceries.db 
+		// Set the location of groceries.db  
 		return DriverManager.getConnection("jdbc:sqlite:groceries.db");
 	}
 
