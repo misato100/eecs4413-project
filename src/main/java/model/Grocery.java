@@ -9,6 +9,34 @@ public class Grocery {
 	private List<Country> countries; //List<Author> authors
 	private Country country; // Author author
 	private String category;
+	private int qtyOrdered;
+	private float price;
+	
+	public Grocery() {
+		
+	}
+	
+	public Grocery(int id, String name, float price) {
+		this.id = id;
+		this.name = name;
+		this.price = price;
+	}
+
+	public int getQtyOrdered() {
+		return qtyOrdered;
+	}
+
+	public void setQtyOrdered(int qtyOrdered) {
+		this.qtyOrdered = qtyOrdered;
+	}
+
+	public float getPrice() {
+		return price;
+	}
+
+	public void setPrice(float price) {
+		this.price = price;
+	}
 
 	public int getId() {
 		return id;
