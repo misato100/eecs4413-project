@@ -68,7 +68,7 @@ table tr td,th {
 }
 
 #th-name {
-	width: 350px;
+	width: 300px;
 }
 
 #th-country {
@@ -76,6 +76,10 @@ table tr td,th {
 }
 
 #th-price {
+	width: 100px;
+}
+
+#th-add {
 	width: 100px;
 }
 

@@ -1,5 +1,7 @@
 package dao;
 
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -26,7 +28,7 @@ public class GroceryDAOImpl implements GroceryDAO {
 
 	private Connection getConnection() throws SQLException {
 		// Set the location of groceries.db  
-		return DriverManager.getConnection("jdbc:sqlite:groceries.db");
+		return DriverManager.getConnection("jdbc:sqlite:/Users/seangould/git/eecs4413-project/groceries.db");
 	}
 
 	private void closeConnection(Connection connection) {
@@ -200,6 +202,32 @@ public class GroceryDAOImpl implements GroceryDAO {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	
+	public Grocery searchByID(int id) {
+		Connection connection = null;
+		Grocery grocery = null;
+		String name = null;
+		float price = 0;
+		try {
+
+			connection = getConnection();
+			PreparedStatement statement = connection
+					.prepareStatement("select * from grocery where id=?");
+			statement.setInt(1, id);
+			ResultSet rs = statement.executeQuery();
+			rs.next();
+			name = rs.getString("name");
+			price = rs.getFloat("price");
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		grocery = new Grocery(id, name, price);
+		return grocery;
+
 	}
 	
 }
