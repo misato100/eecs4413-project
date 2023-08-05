@@ -5,9 +5,9 @@ import java.util.List;
 public class Grocery {
 	private int id;
 	private int categoryId;
-	private String name; //bookTitle
-	private List<Country> countries; //List<Author> authors
-	private Country country; // Author author
+	private String name;
+	private List<Country> countries;
+	private Country country;
 	private String category;
 	private int qtyOrdered;
 	private float price;
