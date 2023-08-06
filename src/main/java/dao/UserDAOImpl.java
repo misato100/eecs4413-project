@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 import model.User;
 
@@ -19,7 +20,7 @@ public class UserDAOImpl implements UserDAO {
 	
 	private Connection getConnection() throws SQLException {
 		// Set the location of register.db  
-		return DriverManager.getConnection("jdbc:sqlite:/Users/seangould/git/eecs4413-project/register.db");	
+		return DriverManager.getConnection("jdbc:sqlite:/Users/seangould/git/eecs4413-project/register.db");
 	}
 	
 	private void closeConnection(Connection connection) {
@@ -31,10 +32,26 @@ public class UserDAOImpl implements UserDAO {
 		}
 	}
 
+	// Check if the username/email is registered already
 	@Override
-	public boolean isRegistered(int id) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean isRegistered(String id) {
+		String sql = "SELECT users.id FROM users WHERE username = '" + id + "' OR email = '" + id + "'";
+		Connection connection = null;
+		boolean isRegistered = false;
+		try {
+			connection = getConnection();
+			PreparedStatement stmt = connection.prepareStatement(sql);
+			ResultSet rs = stmt.executeQuery();
+			if (rs.next()) { // A duplicate username/email is found
+				isRegistered = true;
+			}
+			stmt.close();
+		} catch(SQLException ex) {
+			ex.printStackTrace();
+		}
+		closeConnection(connection);
+		
+		return isRegistered;
 	}
 
 	// Find a user from the database based on their username/email and password
@@ -65,13 +82,33 @@ public class UserDAOImpl implements UserDAO {
 					break;
 				}
 			}
+			stmt.close();
 		} catch(SQLException ex) {
 			ex.printStackTrace();
-		} finally {
-			closeConnection(connection);
 		}
+		closeConnection(connection);
 
 		return user;
+	}
+	
+	// Register a new user to the database
+	@Override
+	public void addUser(String id, String password, String firstname, String lastname, String email) {
+		String sql = "INSERT INTO `users`"
+				+ " (`username`,`firstname`,`lastname`,`email`,`password`)"
+				+ " VALUES ('" + id + "', '" + firstname + "', '" + lastname + "', '" + email + "', '" + password + "')";
+		Connection connection = null;
+		boolean addedUser = false;
+		try {
+			connection = getConnection();
+			PreparedStatement stmt = connection.prepareStatement(sql);
+			stmt.executeUpdate();
+			addedUser = true;
+			stmt.close();
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+		}
+		closeConnection(connection);	
 	}
 
 }

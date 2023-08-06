@@ -28,7 +28,6 @@ public class UserManager extends HttpServlet {
 	
 	public void init(ServletConfig config) throws ServletException {
 		super.init(config);
-		UserDAO userDao = new UserDAOImpl();
 	}
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -39,24 +38,35 @@ public class UserManager extends HttpServlet {
 		String base = "/jsp/";
 		String url = base + "home.jsp";
 		String action = request.getParameter("action");
-		String id = request.getParameter("username"); // Username or email
+		
+		String id = request.getParameter("username"); // Username or email for login; Username for register
 		String password = request.getParameter("password");
+		String firstname = request.getParameter("firstname");
+		String lastname = request.getParameter("lastname");
+		String email = request.getParameter("email");
+		
 		if (action != null) {
-			switch (action) {			
+			switch (action) {		
 			case "identification": // SignIn/SignUp is clicked in home.jsp
 				url = base + "login.jsp";
-				break;			
+				break;
 			case "logout": // Logout is clicked in home.jsp
 				logoutUser(request, response);
 				url = base + "logout.jsp";
 				break;
-			case "register": // Register is clicked in login.jsp
-				System.out.println("TEST REGISTER");
-				url = base + "validation.jsp";
+			case "directToRegister": // Register is clicked in login.jsp
+				url = base + "register.jsp";
 				break;
 			case "login": // SignIn is clicked in login.jsp
 				validate(request, response, id, password);
 				url = base + "validation.jsp";
+				break;
+			case "register": // Register is clicked in register.jsp
+				if (registerUser(request, response, id, password, firstname, lastname, email)) { // if registered successfully
+					url = base + "home.jsp"; // Direct to Home
+				} else { // otherwise
+					url = base + "register.jsp"; // Direct to the login page
+				}
 				break;
 			}
 		}
@@ -88,6 +98,25 @@ public class UserManager extends HttpServlet {
 		} catch (Exception e) {
 			System.out.println(e);
 		}
+	}
+	
+	private boolean registerUser(HttpServletRequest request, HttpServletResponse response, String id, String password, String firstname, String lastname, String email)
+			throws ServletException, IOException {
+		boolean isRegistered = false;
+		try {
+			UserDAO userDao = new UserDAOImpl();
+			if (userDao.isRegistered(id) || userDao.isRegistered(email)) { // The user is registered already
+				System.out.println("User exists");
+			} else { // The user is new
+				userDao.addUser(id, password, firstname, lastname, email);
+				System.out.println("User Registered Successfully");
+				isRegistered = true;
+			}
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		request.setAttribute("validation", isRegistered);
+		return isRegistered;
 	}
 
 }
