@@ -84,7 +84,7 @@ public class UserManager extends HttpServlet {
 			int userId = user.getId();
 			if (userId > 0) { // Logged in successfully
 				HttpSession session = request.getSession();
-				session.setAttribute("name", user.getUsername()); // TODO: Show this name somewhere on the page?
+				session.setAttribute("loginName", user.getUsername()); // TODO: Show this name somewhere on the page?
 			}
 		} catch (Exception e) {
 			System.out.println(e);
