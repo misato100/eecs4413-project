@@ -3,7 +3,7 @@
 
 <div class="header">
 	<h2>
-		<span style="margin-left: 15px; margin-top: 15px; " class="label">GROCERY
-			<span style= "color: white;">STORE</span></span>
+		<span style="margin-left: 15px; margin-top: 15px; " class="label">MKS
+			<span style= "color: white;"> GROCERY STORE</span></span>
 	</h2>
 </div>

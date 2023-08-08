@@ -41,7 +41,7 @@
 			<input id="text" type="text" name="email" size="12" /> <span class="tooltip_message">?</span>
 			<br />
 			Password: 
-			<input id="text" type="text" name="password" size="12" /> <span class="tooltip_message">?</span>
+			<input id="text" type="password" name="password" size="12" /> <span class="tooltip_message">?</span>
 			<br />
 			<input id="submit" type="submit" value="Register" />
 		</form>

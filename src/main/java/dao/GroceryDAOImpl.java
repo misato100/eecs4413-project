@@ -29,9 +29,8 @@ public class GroceryDAOImpl implements GroceryDAO {
 	private Connection getConnection() throws SQLException {
 		// Set the location of groceries.db  
 		//return DriverManager.getConnection("jdbc:sqlite:/Users/seangould/git/eecs4413-project/groceries.db");
-		return DriverManager.getConnection("jdbc:sqlite:D:/York University/Year 2023/Summer 2023/EECS 4413 Building E-Commerce Systems/groceries.db");
+		return DriverManager.getConnection("jdbc:sqlite:/Users/kensu/Downloads/groceries.db");
 	}
-
 	private void closeConnection(Connection connection) {
 		if (connection == null)
 			return;
@@ -230,5 +229,6 @@ public class GroceryDAOImpl implements GroceryDAO {
 		return grocery;
 
 	}
+
 	
 }

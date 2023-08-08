@@ -106,8 +106,8 @@ span.tooltip_message,span.tooltip_img1 {
 	cursor: pointer;
 	display: inline-block;
 	background-color: #F20B26;
-	width: 16px;
-	height: 18px;
+	width: 10px;
+	height: 10px;
 	color: #ffffff;
 	font-size: 12px;
 	font-weight: bold;
@@ -165,4 +165,8 @@ div.message {
 
 #grocery-name {
 	font-weight: bold;
+}
+img{
+	width: 150px;
+	height: 150px;
 }

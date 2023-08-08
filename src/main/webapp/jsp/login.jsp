@@ -27,7 +27,7 @@
 			Username or Email:  <input type="hidden" name="action" value="login" />
 			<input id="text" type="text" name="username" size="12" /> <span class="tooltip_message">?</span>
 			Password:  <input type="hidden" name="action" value="login" />
-			<input id="text" type="text" name="password" size="12" /> <span class="tooltip_message">?</span>
+			<input id="text" type="password" name="password" size="12" /> <span class="tooltip_message">?</span>
 		<p />
 		<input id="submit" type="submit" value="Sign In" />
 		</form>

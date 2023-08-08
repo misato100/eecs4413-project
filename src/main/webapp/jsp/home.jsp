@@ -20,25 +20,25 @@
 		<jsp:include page="leftColumn.jsp" flush="true" />
 		<span class="label" style="margin-left: 15px;">Featured Groceries</span>
 
-		<a class="link" href="${initParam.param2}?action=identification"><span>SignIn/SignUp</span>
-		<a class="link" href="${initParam.param2}?action=logout"><span>Logout</span>
+		<a class="link" href="${initParam.param2}?action=identification"><span>SignIn/SignUp</span></a>
+		<a class="link" href="${initParam.param2}?action=logout"><span>Logout</span></a>
 		
 		<!-- TODO: Change the images here? -->
 		
 		<table>
 			<tr>
-				<td><span class="tooltip_img1"><img src="${initParam.imageURL}/A9781430248064-small_3.png" /></span></td>
-				<td><img src="${initParam.imageURL}/A9781430239963-small_1.png" /></td>
-				<td><img src="${initParam.imageURL}/A9781430247647-small_3.png" /></td>
-				<td><img src="${initParam.imageURL}/A9781430231684-small_8.png" /></td>
-				<td><img src="${initParam.imageURL}/A9781430249474-small_1.png" /></td>
+				<td><span class="tooltip_img1"><img src="${initParam.imageURL}/cucumber.png"/>Cucumber</span></td>
+				<td><img src="${initParam.imageURL}/green onion.png" /></td>
+				<td><img src="${initParam.imageURL}/lemon.png" /></td>
+				<!--  <td><img src="${initParam.imageURL}/A9781430231684-small_8.png" /></td>-->
+				<!--  <td><img src="${initParam.imageURL}/A9781430249474-small_1.png" /></td>-->
 			</tr>
 			<tr>
-				<td><img src="${initParam.imageURL}/A9781430248187-small_1.png" /></td>
-				<td><img src="${initParam.imageURL}/A9781430243779-small_2.png" /></td>
-				<td><img src="${initParam.imageURL}/A9781430247401-small_1.png" /></td>
-				<td><img src="${initParam.imageURL}/A9781430246596-small_1.png" /></td>
-				<td><img src="${initParam.imageURL}/A9781430257349-small_1.png" /></td>
+				<td><img src="${initParam.imageURL}/watermelon.png" /></td>
+				<td><img src="${initParam.imageURL}/ground beef.png" /></td>
+				<td><img src="${initParam.imageURL}/chicken breast.png" /></td>
+				<!-- <td><img src="${initParam.imageURL}/A9781430246596-small_1.png" /></td>-->
+				<!-- <td><img src="${initParam.imageURL}/A9781430257349-small_1.png" /></td>-->
 			</tr>
 		</table>
 		
