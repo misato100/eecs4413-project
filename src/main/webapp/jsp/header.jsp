@@ -2,8 +2,7 @@
 	pageEncoding="ISO-8859-1"%>
 
 <div class="header">
-	<h2>
-		<span style="margin-left: 15px; margin-top: 15px; " class="label">MKS
-			<span style= "color: white;"> GROCERY STORE</span></span>
-	</h2>
+	<h1>MKS GROCERY STORE</h1>
+	<a href="${initParam.param2}?action=identification">SignIn/SignUp</a>
+	<a href="${initParam.param2}?action=logout">Logout</a>
 </div>
