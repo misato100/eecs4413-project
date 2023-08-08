@@ -73,14 +73,17 @@ table tr td,th {
 
 #th-country {
 	width: 200px;
+	text-align:center;
 }
 
 #th-price {
 	width: 100px;
+	text-align:center;
 }
 
 #th-add {
 	width: 100px;
+	text-align:center;
 }
 
 .classEven {
@@ -169,4 +172,7 @@ div.message {
 img{
 	width: 150px;
 	height: 150px;
+}
+.trial{
+	display:inline-block;
 }

@@ -20,7 +20,20 @@
 		<br />
 		<jsp:include page="leftColumn.jsp" flush="true" />
 		<div>
+			
+			<form action="groceries">
 			<span class="label" style="margin-left: 15px;">List of All Groceries</span>
+			
+			<select name="sort" class="trial" style="margin-left: 250px;" style="margin-right: 0;"  >
+				<option disabled selected> Sort</option>
+				<option value="ASC1" >Price: Lowest to Highest</option>
+				<option value="DESC1">Price: Highest to Lowest</option>
+				<option value="ASC2">Alphabetically: Z-A</option>
+				<option value="DESC2">Alphabetically: A-Z</option>
+			</select>
+			<input type="hidden" name="action" value="allGroceries" />
+			<input type="submit" value="Sort" class="trial"/>
+			</form>
 		</div>
 		<jsp:include page="list.jsp" flush="true" />
 

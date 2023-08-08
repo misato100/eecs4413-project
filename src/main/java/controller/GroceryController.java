@@ -44,10 +44,11 @@ public class GroceryController extends HttpServlet {
 		String action = request.getParameter("action");
 		String category = request.getParameter("category");
 		String keyWord = request.getParameter("keyWord");
+		String sort = request.getParameter("sort");
 		if (action != null) {
 			switch (action) {
 			case "allGroceries":
-				findAllGroceries(request, response);
+				findAllGroceries(request, response, sort);
 				url = base + "listOfGroceries.jsp";
 				break;
 			case "category":
@@ -64,11 +65,11 @@ public class GroceryController extends HttpServlet {
 		requestDispatcher.forward(request, response);
 	}
 
-	private void findAllGroceries(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	private void findAllGroceries(HttpServletRequest request, HttpServletResponse response, String sort) throws ServletException, IOException {
 		try {
 			List<Grocery> groceryList = new ArrayList<Grocery>();
 			GroceryDAO groceryDao = new GroceryDAOImpl();
-			groceryList = groceryDao.findAllGroceries();
+			groceryList = groceryDao.findAllGroceries(sort);
 			request.setAttribute("groceryList", groceryList);
 		} catch (Exception e) {
 			System.out.println(e);

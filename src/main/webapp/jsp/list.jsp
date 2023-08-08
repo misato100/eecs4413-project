@@ -7,6 +7,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<script src="js/grocerystore.js"></script>
 </head>
 <body>
  	<form method='get' action='BasketServlet'>
@@ -23,6 +24,7 @@
 				<th id="th-name">Name</th>
 				<th id="th-country">Product of</th>
 				<th id="th-category">Category</th>
+				<th id="th-price">Price</th>
 				<th id="th-qty"> Qty </th>
 				<th id="th-add"> Add to Cart</th>
 			</tr>
@@ -33,9 +35,10 @@
 		<c:forEach items="${requestScope.groceryList}" var="item">
 			<tr>
 				<td id="grocery-name">${item.name}</td>
-				<td>${item.country.name}</td>
-				<td>${item.category}</td>
-				<td><input type ='textbox' name = "qty${item.getId()}" value = '1' size = '5'></td>
+				<td style="text-align:center;">${item.country.name}</td>
+				<td style="text-align:center;">${item.category}</td>
+				<td style="text-align:center;">$${item.price}</td>
+				<td><input type ='textbox' name = "qty${item.getId()}" value = '1' size = '5'/></td>
 				<td><input type='checkbox' name='id' value="${item.getId()}"/> <td>
 			</tr>
 		</c:forEach>

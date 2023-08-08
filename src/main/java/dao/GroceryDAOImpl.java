@@ -40,13 +40,24 @@ public class GroceryDAOImpl implements GroceryDAO {
 		}
 	}
 
-	public List<Grocery> findAllGroceries() {
+	public List<Grocery> findAllGroceries(String sort) {
 		List<Grocery> result = new ArrayList<Grocery>();
 		
 		String sql = "SELECT grocery.id as grocery_id, grocery.name, country.id as country_id, country.name, category.id as category_id, category.category_description, grocery.price"
 				+ " FROM grocery"
 				+ " INNER JOIN country, category ON grocery.country_id = country.id AND grocery.category_id = category.id";
-				
+		if(sort != null) {
+			if(sort.equals("ASC1")) {
+				sql += " ORDER BY grocery.price ASC";
+			}else if(sort.equals("ASC2")) {
+				sql+= " ORDER BY grocery.name ASC";
+			}else if(sort.equals("DESC1")) {
+				sql += " ORDER BY grocery.price DESC"; 
+			}else if(sort.equals("DESC2")){
+				sql += " ORDER BY grocery.name DESC";
+			}
+		}
+		
 		Connection connection = null;
 		try {
 			connection = getConnection();
@@ -198,6 +209,7 @@ public class GroceryDAOImpl implements GroceryDAO {
 			grocery.setName(rs.getString("name"));
 			grocery.setCountry(country);
 			grocery.setCategory(rs.getString("category_description"));
+			grocery.setPrice(rs.getFloat(7));
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
