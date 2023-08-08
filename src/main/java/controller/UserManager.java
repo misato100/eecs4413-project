@@ -1,6 +1,11 @@
 package controller;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,8 +43,22 @@ public class UserManager extends HttpServlet {
 		String base = "/jsp/";
 		String url = base + "home.jsp";
 		String action = request.getParameter("action");
-		
-		String id = request.getParameter("username"); // Username or email for login; Username for register
+		int id = 0;
+		try {
+			Connection conn = DriverManager.getConnection("jdbc:sqlite:/Users/kensu/Downloads/register.db");
+			PreparedStatement stmt = conn.prepareStatement("select count(*) from users;");
+			ResultSet rs = stmt.executeQuery();
+			while(rs.next()) {
+				id = rs.getInt(1);
+			}
+			id++;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		//String id = request.getParameter("id"); 
+		String username = request.getParameter("username"); // Username or email for login; Username for register
 		String password = request.getParameter("password");
 		String firstname = request.getParameter("firstname");
 		String lastname = request.getParameter("lastname");
@@ -58,11 +77,11 @@ public class UserManager extends HttpServlet {
 				url = base + "register.jsp";
 				break;
 			case "login": // SignIn is clicked in login.jsp
-				validate(request, response, id, password);
+				validate(request, response, username, password);
 				url = base + "validation.jsp";
 				break;
 			case "register": // Register is clicked in register.jsp
-				if (registerUser(request, response, id, password, firstname, lastname, email)) { // if registered successfully
+				if (registerUser(request, response, id, username, password, firstname, lastname, email)) { // if registered successfully
 					url = base + "home.jsp"; // Direct to Home
 				} else { // otherwise
 					url = base + "register.jsp"; // Direct to the login page
@@ -100,15 +119,16 @@ public class UserManager extends HttpServlet {
 		}
 	}
 	
-	private boolean registerUser(HttpServletRequest request, HttpServletResponse response, String id, String password, String firstname, String lastname, String email)
+	private boolean registerUser(HttpServletRequest request, HttpServletResponse response, int id,String username, String password, String firstname, String lastname, String email)
 			throws ServletException, IOException {
 		boolean isRegistered = false;
+		System.out.println(id);
 		try {
 			UserDAO userDao = new UserDAOImpl();
-			if (userDao.isRegistered(id) || userDao.isRegistered(email)) { // The user is registered already
+			if (userDao.isRegistered(username) || userDao.isRegistered(email)) { // The user is registered already
 				System.out.println("User exists");
 			} else { // The user is new
-				userDao.addUser(id, password, firstname, lastname, email);
+				userDao.addUser(id,username, password, firstname, lastname, email);
 				System.out.println("User Registered Successfully");
 				isRegistered = true;
 			}

@@ -48,7 +48,7 @@
 			</div>
 			<div class="ui_item">
 			Password: 
-			<input id="text" type="text" name="password" size="20" /> <span class="tooltip_message">?</span>
+			<input id="text" type="password" name="password" size="12" /> <span class="tooltip_message">?</span>
 			</div>
 			<div class="ui_item">
 			<input id="submit" type="submit" value="Register" />

@@ -20,8 +20,9 @@ public class UserDAOImpl implements UserDAO {
 	
 	private Connection getConnection() throws SQLException {
 		// Set the location of register.db  
-		return DriverManager.getConnection("jdbc:sqlite:/Users/seangould/git/eecs4413-project/register.db");
 		//return DriverManager.getConnection("jdbc:sqlite:D:/York University/Year 2023/Summer 2023/EECS 4413 Building E-Commerce Systems/register.db");
+		//return DriverManager.getConnection("jdbc:sqlite:/Users/seangould/git/eecs4413-project/register.db");
+		return DriverManager.getConnection("jdbc:sqlite:/Users/kensu/Downloads/register.db");
 	}
 	
 	private void closeConnection(Connection connection) {
@@ -36,7 +37,7 @@ public class UserDAOImpl implements UserDAO {
 	// Check if the username/email is registered already
 	@Override
 	public boolean isRegistered(String id) {
-		String sql = "SELECT users.id FROM users WHERE username = '" + id + "' OR email = '" + id + "'";
+		String sql = "SELECT users.username FROM users WHERE username = '" + id + "' OR email = '" + id + "'";
 		Connection connection = null;
 		boolean isRegistered = false;
 		try {
@@ -94,10 +95,10 @@ public class UserDAOImpl implements UserDAO {
 	
 	// Register a new user to the database
 	@Override
-	public void addUser(String id, String password, String firstname, String lastname, String email) {
+	public void addUser(int id,String username, String password, String firstname, String lastname, String email) {
 		String sql = "INSERT INTO `users`"
-				+ " (`username`,`firstname`,`lastname`,`email`,`password`)"
-				+ " VALUES ('" + id + "', '" + firstname + "', '" + lastname + "', '" + email + "', '" + password + "')";
+				+ " ('id',`username`,`firstname`,`lastname`,`email`,`password`)"
+				+ " VALUES (" + id + ",'"+ username+ "', '" + firstname + "', '" + lastname + "', '" + email + "', '" + password + "')";
 		Connection connection = null;
 		boolean addedUser = false;
 		try {

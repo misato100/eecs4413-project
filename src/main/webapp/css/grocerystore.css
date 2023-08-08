@@ -67,6 +67,14 @@ form span {
 	color: #ffffff;
 }
 
+span.tooltip_message,span.tooltip_img1 {
+	cursor: pointer;
+	display: inline-block;
+	background-color: #F20B26;
+	width: 10px;
+	height: 10px;
+}
+
 #submit {
 	background-color: #0aaf30;
 	border: none;
@@ -77,7 +85,6 @@ form span {
 	padding: 5px 10px;
 	border-radius: 2px;
 }
-
 .center {
 	display: flex;
 	justify-content: center;
@@ -111,6 +118,17 @@ form span {
 	margin-right: auto;
 }
 
+
 .form {
 	display: inline-block;
+}
+
+#grocery-name {
+	font-weight: bold;
+}
+
+img{
+	width: 150px;
+	height: 150px;
+
 }
