@@ -14,48 +14,33 @@
 <script src="js/grocerystore.js" type="text/javascript"></script>
 <script type="text/javascript" src="js/jquery-1.9.1.js"></script>
 </head>
-
-<div class="leftbar">
-	<ul id="menu">
-	
-		<li><div>
-				<a class="link1" href="${initParam.param1}"> <span class="label"
-					style="margin-left: 15px;">Home</span>
-				</a>
-			</div></li>
+<body>
+<div class="left_column">
+	<ul>
+		<li><a href="${initParam.param1}"><span>Home</span></a></li>
 			
-		<li><div>
-
-				<a class="link1" href="${initParam.param1}?action=allGroceries"><span
-					style="margin-left: 15px;" class="label">All Groceries</span></a>
-			</div></li>
+		<li><a href="${initParam.param1}?action=allGroceries"><span>All Groceries</span></a></li>
 			
-		<li><div>
-				<span class="label" style="margin-left: 15px;">Categories</span>
-			</div>
-			
-			<ul>
+		<li><span class="tab_title">Categories</span>
+			<ul style="padding: 5px;">
 			  <c:forEach items="${categoryList}" var="item"> 		     
-				<li><a class="label"
-					href="${initParam.param1}?action=category&categoryId=${item.id}&category=${item.categoryDescription}">
-					<span  class="label" style="margin-left: 30px;">
-						${item.categoryDescription} </span></a>
+				<li style="background-color: #3d3d3d; margin: 5px 10px; padding: 5px;">
+				<a class="tab" href="${initParam.param1}?action=category&categoryId=${item.id}&category=${item.categoryDescription}">
+				<span>${item.categoryDescription}</span></a>
 				</li>
               </c:forEach>			
 			</ul></li>
-			
 	</ul>
 	
 	<form class="search">
-		Search: <input type="hidden" name="action" value="search" /> <input id="text"
+		<span>Search: </span><input type="hidden" name="action" value="search" /> <input id="text"
 			type="text" name="keyWord" size="12" /> <span
 			class="tooltip_message">?</span>
-		<p />
 		<input id="submit" type="submit" value="Search" />
 	</form>
 
 </div>
-
+</body>
 
 
 

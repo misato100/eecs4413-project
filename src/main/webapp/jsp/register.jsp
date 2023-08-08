@@ -13,39 +13,49 @@
 </head>
 
 <body>
-	<div id="centered">
+	<div class="main">
 
 		<jsp:include page="header.jsp" flush="true" />
-		<br />
 		<jsp:include page="leftColumn.jsp" flush="true" />
 
+		<div class="user_input">
 		<c:set var="validated" value="${requestScope.validation}" />
 		<c:set var="validateWith" value="false" />
 		
+		<div class="ui_item">
 		<c:choose>
-			<c:when test="${validated != validateWith}"><p>Register Here</p></c:when>
+			<c:when test="${validated != validateWith}"><p style="font-weight: bold;">Register Here</p></c:when>
         	<c:otherwise>The Username or Email exists</c:otherwise>
 		</c:choose>
+		</div>
 		
 		<form action="UserManager" method="POST">
+			<div class="ui_item">
 			Username:  <input type="hidden" name="action" value="register" />
-			<input id="text" type="text" name="username" size="12" /> <span class="tooltip_message">?</span>
-			<br />
+			<input id="text" type="text" name="username" size="20" /> <span class="tooltip_message">?</span>
+			</div>
+			<div class="ui_item">
 			First Name:  
-			<input id="text" type="text" name="firstname" size="12" /> <span class="tooltip_message">?</span>
-			<br />
+			<input id="text" type="text" name="firstname" size="20" /> <span class="tooltip_message">?</span>
+			</div>
+			<div class="ui_item">
 			Last Name:  
-			<input id="text" type="text" name="lastname" size="12" /> <span class="tooltip_message">?</span>
-			<br />
+			<input id="text" type="text" name="lastname" size="20" /> <span class="tooltip_message">?</span>
+			</div>
+			<div class="ui_item">
 			Email: 
-			<input id="text" type="text" name="email" size="12" /> <span class="tooltip_message">?</span>
-			<br />
+			<input id="text" type="text" name="email" size="20" /> <span class="tooltip_message">?</span>
+			</div>
+			<div class="ui_item">
 			Password: 
-			<input id="text" type="text" name="password" size="12" /> <span class="tooltip_message">?</span>
-			<br />
+			<input id="text" type="text" name="password" size="20" /> <span class="tooltip_message">?</span>
+			</div>
+			<div class="ui_item">
 			<input id="submit" type="submit" value="Register" />
+			</div>
 		</form>
-
+		</div>
+		
 	</div>
 	
 </body>

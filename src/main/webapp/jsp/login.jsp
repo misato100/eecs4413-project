@@ -13,29 +13,29 @@
 </head>
 
 <body>
-	<div id="centered">
+	<div class="main">
 
 		<jsp:include page="header.jsp" flush="true" />
-		<br />
 		<jsp:include page="leftColumn.jsp" flush="true" />
 		
-		<div>
-			<span class="label" style="margin-left: 15px;">Sign In Here</span>
-		</div>
+		<div class="user_input">
+			<div class="ui_item"><span style="font-weight: bold;">Sign In Here</span></div>
 		
 		<form action="UserManager" method="POST">
+			<div class="ui">
 			Username or Email:  <input type="hidden" name="action" value="login" />
-			<input id="text" type="text" name="username" size="12" /> <span class="tooltip_message">?</span>
-			Password:  <input type="hidden" name="action" value="login" />
-			<input id="text" type="text" name="password" size="12" /> <span class="tooltip_message">?</span>
-		<p />
-		<input id="submit" type="submit" value="Sign In" />
+			<input id="text" type="text" name="username" size="20" /> <span class="tooltip_message">?</span>
+			</div>
+			<div class="ui">
+				Password:  <input type="hidden" name="action" value="login" />
+				<input id="text" type="text" name="password" size="20" /> <span class="tooltip_message">?</span>
+			</div>
+			<div class="ui"><input id="submit" type="submit" value="Sign In" /></div>
 		</form>
 		
-		<br />
-		<p>Or register here: </p>	 
-		<a class="link" href="${initParam.param2}?action=directToRegister"><span>Register</span>
-		
+			<p style="font-weight: bold;">Or register here: 
+			<a href="${initParam.param2}?action=directToRegister"><span>Register</span></a></p>
+		</div>
 	</div>
 	
 </body>

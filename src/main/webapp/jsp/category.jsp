@@ -18,13 +18,10 @@
 
 </head>
 <body>
-	<div id="centered">
-	
+	<div>
 		<jsp:include page="header.jsp" flush="true" />
-		<br />
 		<jsp:include page="leftColumn.jsp" flush="true" />
-		<jsp:include page="list.jsp" flush="true" />
-		
-	</div>
+		<jsp:include page="list.jsp" flush="true" />	
+		</div>	
 </body>
 </html>

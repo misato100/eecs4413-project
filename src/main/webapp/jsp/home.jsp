@@ -13,21 +13,21 @@
 <script src="js/grocerystore.js"></script>
 </head>
 <body>
-	<div id="centered">
-	
+	<div class="main">
 		<jsp:include page="header.jsp" flush="true" />
-		<br />
+		
 		<jsp:include page="leftColumn.jsp" flush="true" />
-		<span class="label" style="margin-left: 15px;">Featured Groceries</span>
-
+        <!-- 
 		<a class="link" href="${initParam.param2}?action=identification"><span>SignIn/SignUp</span>
 		<a class="link" href="${initParam.param2}?action=logout"><span>Logout</span>
-		
+		 -->
+		 
+		<div class="center">
+		<span class="title">Featured Groceries</span>
 		<!-- TODO: Change the images here? -->
-		
-		<table>
+		<table class="images">
 			<tr>
-				<td><span class="tooltip_img1"><img src="${initParam.imageURL}/A9781430248064-small_3.png" /></span></td>
+				<td><img src="${initParam.imageURL}/A9781430248064-small_3.png" /></td>
 				<td><img src="${initParam.imageURL}/A9781430239963-small_1.png" /></td>
 				<td><img src="${initParam.imageURL}/A9781430247647-small_3.png" /></td>
 				<td><img src="${initParam.imageURL}/A9781430231684-small_8.png" /></td>
@@ -41,8 +41,7 @@
 				<td><img src="${initParam.imageURL}/A9781430257349-small_1.png" /></td>
 			</tr>
 		</table>
-		
-		
+		</div>
 	</div>
 </body>
 </html>

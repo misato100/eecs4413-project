@@ -10,20 +10,17 @@
 <script src="js/jquery-1.9.1.js"></script>
 <link rel="stylesheet" href="css/grocerystore.css" type="text/css" />
 <script src="js/grocerystore.js" type="text/javascript"></script>
-
 </head>
 
 <body>
-	<div id="centered">
-
+	<div class="main">
 		<jsp:include page="header.jsp" flush="true" />
-		<br />
-		<jsp:include page="leftColumn.jsp" flush="true" />
-		<div>
-			<span class="label" style="margin-left: 15px;">List of All Groceries</span>
-		</div>
-		<jsp:include page="list.jsp" flush="true" />
 
+		<jsp:include page="leftColumn.jsp" flush="true" />
+		<div class="center">
+			<span>List of All Groceries</span>
+			<jsp:include page="list.jsp" flush="true" />
+		</div>
 	</div>
 </body>
 </html>

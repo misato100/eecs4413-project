@@ -9,7 +9,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 </head>
 <body>
- 	<form method='get' action='BasketServlet'>
+<div class="center">
+ 	<form method='get' action='BasketServlet' class="form">
 	<div>
 		<c:if test="${param.category != null}" > 
 		<span class="label" style="margin-left: 15px;"> List of ${param.category} Groceries
@@ -46,5 +47,6 @@
 	<input type='submit' value='Add to my BASKET' />
 	<input type='reset' value='CLEAR' />
 	</form>
+</div>
 </body>
 </html>

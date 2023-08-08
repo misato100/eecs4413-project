@@ -13,18 +13,17 @@
 </head>
 
 <body>
-	<div id="centered">
+	<div class="main">
 
 		<jsp:include page="header.jsp" flush="true" />
-		<br />
 		<jsp:include page="leftColumn.jsp" flush="true" />
 		
-		<div>
-			<span class="label" style="margin-left: 15px;">Logout Status</span>
-		</div>
+		<div class="logout">
+			<span style="font-weight: bold;">Logout Status</span>		
 		
 		<!-- TODO: Add a function to check if user is logged in? -->
 		<p>Logout Successfully</p>
+		</div>
 		
 	</div>
 	
