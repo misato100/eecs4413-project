@@ -27,9 +27,9 @@
 		
 		<table>
 			<tr>
-				<td><span class="tooltip_img1"><img src="${initParam.imageURL}/cucumber.png"/>Cucumber</span></td>
-				<td><img src="${initParam.imageURL}/green onion.png" /></td>
-				<td><img src="${initParam.imageURL}/lemon.png" /></td>
+				<td>Cucumber<span class="tooltip_img1"><img src="${initParam.imageURL}/cucumber.png"/>Cucumber</span></td>
+				<td>Green Onion<img src="${initParam.imageURL}/green onion.png" /></td>
+				<td>Lemon<img src="${initParam.imageURL}/lemon.png" /></td>
 				<!--  <td><img src="${initParam.imageURL}/A9781430231684-small_8.png" /></td>-->
 				<!--  <td><img src="${initParam.imageURL}/A9781430249474-small_1.png" /></td>-->
 			</tr>
