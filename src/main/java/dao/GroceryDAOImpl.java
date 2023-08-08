@@ -192,7 +192,7 @@ public class GroceryDAOImpl implements GroceryDAO {
 		try {
 			country.setId(rs.getInt("country_id"));
 			country.setGroceryId(rs.getInt("grocery_id"));
-			country.setName(rs.getString("name"));
+			country.setName(rs.getString(4));
 			
 			grocery.setId(rs.getInt("grocery_id"));
 			grocery.setCategoryId(rs.getInt("category_id"));
