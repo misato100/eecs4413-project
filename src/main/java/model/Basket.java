@@ -63,6 +63,14 @@ public class Basket {
 	  public int size() {
 	      return basket.size();
 	   }
+	  
+	  public int totalSize() {
+		  int size = 0;
+		  for (Grocery g: basket) {
+			  size += g.getQtyOrdered();
+		  }
+		  return size;
+	  }
 	 
 	   public boolean isEmpty() {
 	      return size() == 0;

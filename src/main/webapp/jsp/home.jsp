@@ -25,15 +25,15 @@
 		<table class="images">
 			<tr>
 				<td>Cucumber<span class="tooltip_img1"><img src="${initParam.imageURL}/cucumber.png"/></span></td>
-				<td>Green Onion<img src="${initParam.imageURL}/green onion.png" /></td>
+				<td>Green Onion<img src="${initParam.imageURL}/greenonion.png" /></td>
 				<td>Lemon<img src="${initParam.imageURL}/lemon.png" /></td>
 				<!--  <td><img src="${initParam.imageURL}/A9781430231684-small_8.png" /></td>-->
 				<!--  <td><img src="${initParam.imageURL}/A9781430249474-small_1.png" /></td>-->
 			</tr>
 			<tr>
 				<td>Watermelon<img src="${initParam.imageURL}/watermelon.png" /></td>
-				<td>Ground Beef<img src="${initParam.imageURL}/ground beef.png" /></td>
-				<td>Chicken Breast<img src="${initParam.imageURL}/chicken breast.png" /></td>
+				<td>Ground Beef<img src="${initParam.imageURL}/leangroundbeef.png" /></td>
+				<td>Chicken Breast<img src="${initParam.imageURL}/bonelesschickenbreast.png" /></td>
 				<!-- <td><img src="${initParam.imageURL}/A9781430246596-small_1.png" /></td>-->
 				<!-- <td><img src="${initParam.imageURL}/A9781430257349-small_1.png" /></td>-->
 			</tr>

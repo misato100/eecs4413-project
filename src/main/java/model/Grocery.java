@@ -11,7 +11,9 @@ public class Grocery {
 	private String category;
 	private int qtyOrdered;
 	private float price;
-	
+	private String img;
+
+
 	public Grocery() {
 		
 	}
@@ -20,6 +22,8 @@ public class Grocery {
 		this.id = id;
 		this.name = name;
 		this.price = price;
+		String imgUrl = name.toLowerCase();
+		this.img = "images/" + imgUrl.replace(" ", "") + ".png";
 	}
 
 	public int getQtyOrdered() {
@@ -88,6 +92,15 @@ public class Grocery {
 	
 	public String getCategory() {
 		return category;
+	}
+	
+	
+	public String getImg() {
+		return img;
+	}
+
+	public void setImg(String img) {
+		this.img = img;
 	}
 
 }

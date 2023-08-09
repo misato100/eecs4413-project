@@ -59,7 +59,8 @@ public class BasketServlet extends HttpServlet {
 		    try {
 		    	
 		    	String todo = request.getParameter("todo");
-		    	if (todo.equals("add") ) {
+		    	if (todo == null) {}
+		    	else if (todo.equals("add") ) {
 		 		    String[] ids = request.getParameterValues("id");       
 		 		    if (ids == null) {
 		 		    	out.println("<h3>No Items Selected!</h3></body></html>");

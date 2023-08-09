@@ -22,3 +22,18 @@ $(document).ready(function () {
 	  $("span.tooltip_img1").hover(function(){$(this).append('<div class="message"><ul><li>Title - Beginning Groovy, Grails and Griffon</li><li>Author: Vishal Layka</li><li>Publisher: Apress</li></ul></div>');
 }, function(){$("div.message").remove();});*/
 });
+
+function minusOne(num) {
+	var value = parseInt(document.getElementById('qty'+num).value);
+	value--;
+	if (value > 0) {
+		document.getElementById('qty'+num).value = value;
+	}
+
+}
+
+function addOne(num) {
+	var value = parseInt(document.getElementById('qty'+num).value);
+	value++;
+	document.getElementById('qty'+num).value = value;
+}

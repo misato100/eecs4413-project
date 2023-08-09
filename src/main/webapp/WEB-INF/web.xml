@@ -12,6 +12,11 @@
 	</context-param>
 	
 	<context-param>
+		<param-name>param3</param-name>
+		<param-value>BasketServlet</param-value>
+	</context-param>
+	
+	<context-param>
 		<param-name>imageURL</param-name>
 		<param-value>images</param-value>
 	</context-param>
