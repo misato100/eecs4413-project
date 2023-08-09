@@ -43,7 +43,6 @@ public class BasketServlet extends HttpServlet {
 	    	response.sendRedirect("/eecs4413-project/UserManager?action=identification");
 	    	// TODO: Save added items even the user hasn't logged in?
 	    } else { // user logged in
-	    	System.out.println("Logged in " + session.getAttribute("loginName"));
 	    	GroceryDAO groceryDAO = new GroceryDAOImpl();
 		    Basket basket;
 		    

@@ -62,8 +62,6 @@
 	</tr>
 </c:forEach>
 
-<tr><td colspan='6' align=''>Total Price: ${basket.total}
-</td></tr>
 </table>
 </div>
 
@@ -71,6 +69,21 @@
 <div class="center">
 <p><a href='groceries'>Continue Shopping...</a></p>
 </div>
+</div>
+
+<div class="center">
+<table border='1' cellpadding ='6'>
+	<tr><th align =''>Summary</th></tr>
+	
+	<tr><td> Subtotal: ${basket.total} <br>
+			 Shipping: Calculated at checkout </td>
+	</tr>
+	
+	<tr><td><form method='get' action='CheckoutServlet'>
+	<input type='submit' value='Checkout Now'>
+	<!-- Optional Guest Checkout? -->
+	</form></td></tr>
+</table>
 </div>
 
 </body>
