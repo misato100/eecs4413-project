@@ -45,9 +45,13 @@ public class UserManager extends HttpServlet {
 		String action = request.getParameter("action");
 		int id = 0;
 		try {
+			// In Eclipse, click "Run Configurations" within "Run" tab
+			// Under "Arguments" tab, there is a section "Working directory"
+			// Change the Default to Other, and set it to the current working directory
+			
 			//Connection conn = DriverManager.getConnection("jdbc:sqlite:/Users/kensu/Downloads/register.db");
-			//Connection conn = DriverManager.getConnection("jdbc:sqlite:D:/York University/Year 2023/Summer 2023/EECS 4413 Building E-Commerce Systems/register.db");
-			Connection conn = DriverManager.getConnection("jdbc:sqlite:/Users/seangould/git/eecs4413-project/src/register.db");
+			//Connection conn = DriverManager.getConnection("jdbc:sqlite:/Users/seangould/git/eecs4413-project/src/register.db");
+			Connection conn = DriverManager.getConnection("jdbc:sqlite:src/register.db");
 			PreparedStatement stmt = conn.prepareStatement("select count(*) from users;");
 			ResultSet rs = stmt.executeQuery();
 			while(rs.next()) {

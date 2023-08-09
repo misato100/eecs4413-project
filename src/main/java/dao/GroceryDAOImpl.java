@@ -3,6 +3,7 @@ package dao;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.sql.Connection;
+import java.sql.DatabaseMetaData;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -27,10 +28,13 @@ public class GroceryDAOImpl implements GroceryDAO {
 	}
 
 	private Connection getConnection() throws SQLException {
-		// Set the location of groceries.db  
-		//return DriverManager.getConnection("jdbc:sqlite:D:/York University/Year 2023/Summer 2023/EECS 4413 Building E-Commerce Systems/groceries.db");
-		return DriverManager.getConnection("jdbc:sqlite:/Users/seangould/git/eecs4413-project/src/groceries.db");
+		// In Eclipse, click "Run Configurations" within "Run" tab
+		// Under "Arguments" tab, there is a section "Working directory"
+		// Change the Default to Other, and set it to the current working directory
+
+		//return DriverManager.getConnection("jdbc:sqlite:/Users/seangould/git/eecs4413-project/src/groceries.db");
 		//return DriverManager.getConnection("jdbc:sqlite:/Users/kensu/Downloads/groceries.db");
+		return DriverManager.getConnection("jdbc:sqlite:src/groceries.db");
 	}
 	private void closeConnection(Connection connection) {
 		if (connection == null)
