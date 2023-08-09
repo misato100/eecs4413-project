@@ -14,16 +14,13 @@
 </head>
 
 <body>
-	<div id="centered">
+	<div class="main">
 
 		<jsp:include page="header.jsp" flush="true" />
-		<br />
 		<jsp:include page="leftColumn.jsp" flush="true" />
-		<div>
-			
-			<form action="groceries">
-			<span class="label" style="margin-left: 15px;">List of All Groceries</span>
-			
+		
+		<div class="content">
+			<form action="groceries">		
 			<select name="sort" class="trial" style="margin-left: 250px;" style="margin-right: 0;"  >
 				<option disabled selected> Sort</option>
 				<option value="ASC1" >Price: Lowest to Highest</option>

@@ -46,6 +46,7 @@ public class UserManager extends HttpServlet {
 		int id = 0;
 		try {
 			Connection conn = DriverManager.getConnection("jdbc:sqlite:/Users/kensu/Downloads/register.db");
+			//Connection conn = DriverManager.getConnection("jdbc:sqlite:D:/York University/Year 2023/Summer 2023/EECS 4413 Building E-Commerce Systems/register.db");
 			PreparedStatement stmt = conn.prepareStatement("select count(*) from users;");
 			ResultSet rs = stmt.executeQuery();
 			while(rs.next()) {

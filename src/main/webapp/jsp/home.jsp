@@ -21,24 +21,19 @@
 		<div class="center">
 		<span class="title">Featured Groceries</span>
 
-		<!--  
-		<a class="link" href="${initParam.param2}?action=identification"><span>SignIn/SignUp</span></a>
-		<a class="link" href="${initParam.param2}?action=logout"><span>Logout</span></a>
-		-->
-
 		<!-- TODO: Change the images here? -->
 		<table class="images">
 			<tr>
-				<td>Cucumber<span class="tooltip_img1"><img src="${initParam.imageURL}/cucumber.png"/>Cucumber</span></td>
+				<td>Cucumber<span class="tooltip_img1"><img src="${initParam.imageURL}/cucumber.png"/></span></td>
 				<td>Green Onion<img src="${initParam.imageURL}/green onion.png" /></td>
 				<td>Lemon<img src="${initParam.imageURL}/lemon.png" /></td>
 				<!--  <td><img src="${initParam.imageURL}/A9781430231684-small_8.png" /></td>-->
 				<!--  <td><img src="${initParam.imageURL}/A9781430249474-small_1.png" /></td>-->
 			</tr>
 			<tr>
-				<td><img src="${initParam.imageURL}/watermelon.png" /></td>
-				<td><img src="${initParam.imageURL}/ground beef.png" /></td>
-				<td><img src="${initParam.imageURL}/chicken breast.png" /></td>
+				<td>Watermelon<img src="${initParam.imageURL}/watermelon.png" /></td>
+				<td>Ground Beef<img src="${initParam.imageURL}/ground beef.png" /></td>
+				<td>Chicken Breast<img src="${initParam.imageURL}/chicken breast.png" /></td>
 				<!-- <td><img src="${initParam.imageURL}/A9781430246596-small_1.png" /></td>-->
 				<!-- <td><img src="${initParam.imageURL}/A9781430257349-small_1.png" /></td>-->
 			</tr>
