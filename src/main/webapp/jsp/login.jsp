@@ -26,7 +26,6 @@
 			Username or Email:  <input type="hidden" name="action" value="login" />
 			<input id="text" type="text" name="username" size="20" /> <span class="tooltip_message">?</span>
 			</div>
-			<input id="text" type="text" name="username" size="12" /> <span class="tooltip_message">?</span>
 			<div class="ui">
 			Password:  <input type="hidden" name="action" value="login" />
 			<input id="text" type="password" name="password" size="12" /> <span class="tooltip_message">?</span>

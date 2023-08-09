@@ -28,8 +28,8 @@
 				<option disabled selected> Sort</option>
 				<option value="ASC1" >Price: Lowest to Highest</option>
 				<option value="DESC1">Price: Highest to Lowest</option>
-				<option value="ASC2">Alphabetically: Z-A</option>
-				<option value="DESC2">Alphabetically: A-Z</option>
+				<option value="ASC2">Alphabetically: A-Z</option>
+				<option value="DESC2">Alphabetically: Z-A</option>
 			</select>
 			<input type="hidden" name="action" value="allGroceries" />
 			<input type="submit" value="Sort" class="trial"/>
