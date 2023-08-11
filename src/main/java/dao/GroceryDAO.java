@@ -13,4 +13,5 @@ public interface GroceryDAO {
 	public void delete(int groceryId);	
 	public List<Grocery> findGroceriesByCategory(String category);
 	public Grocery searchByID(int id);
+	public Grocery searchByName(String name);
 }
