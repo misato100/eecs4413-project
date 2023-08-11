@@ -203,7 +203,6 @@ public class GroceryDAOImpl implements GroceryDAO {
 		}
 	}
 	
-
 	public Grocery searchByID(int id) {
 		Connection connection = null;
 		Grocery grocery = null;
@@ -272,5 +271,4 @@ public class GroceryDAOImpl implements GroceryDAO {
 			e.printStackTrace();
 		}
 	}
-	
 }
