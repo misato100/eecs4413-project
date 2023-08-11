@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import model.Admin;
 import model.User;
 
 public class UserDAOImpl implements UserDAO {
@@ -94,6 +95,32 @@ public class UserDAOImpl implements UserDAO {
 		closeConnection(connection);
 
 		return user;
+	}
+	
+	// Find admin from the database based on their id and password
+	public Admin findAdmin(String id, String password) {
+		String sql = "SELECT admin.id, admin.password"
+				+ " FROM admin"
+				+ " WHERE id = '" + id + "'";
+		Connection connection = null;
+		Admin admin = new Admin();
+		try {
+			connection = getConnection();
+			PreparedStatement stmt = connection.prepareStatement(sql);
+			ResultSet rs = stmt.executeQuery();
+			if (rs.next()) { // Admin found
+				if ((rs.getString("password")).equals(password)) { // Password is correct
+					admin.setId(rs.getString(1));
+					admin.setPassword(password);
+				}
+			}
+			stmt.close();
+		} catch(SQLException ex) {
+			ex.printStackTrace();
+		}
+		closeConnection(connection);
+
+		return admin;		
 	}
 	
 	// Register a new user to the database

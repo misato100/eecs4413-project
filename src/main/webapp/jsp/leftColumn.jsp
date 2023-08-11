@@ -38,6 +38,12 @@
 			class="tooltip_message">?</span>
 		<input id="submit" type="submit" value="Search" />
 	</form>
+	
+	<c:choose>
+		<c:when test="${adminLoginName != null}">
+		<p style="font-weight: bold;"><a href="${initParam.param2}?action=adminLogin&status=loggedin">Sales History</a></c:when>
+        <c:otherwise></c:otherwise>
+	</c:choose>
 
 </div>
 </body>

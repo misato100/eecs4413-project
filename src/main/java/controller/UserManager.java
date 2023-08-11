@@ -21,6 +21,7 @@ import javax.servlet.http.HttpSession;
 
 import dao.UserDAO;
 import dao.UserDAOImpl;
+import model.Admin;
 import model.Category;
 import model.User;
 
@@ -69,6 +70,8 @@ public class UserManager extends HttpServlet {
 		String firstname = request.getParameter("firstname");
 		String lastname = request.getParameter("lastname");
 		String email = request.getParameter("email");
+		String adminId = request.getParameter("id");
+		String status = request.getParameter("status");
 		
 		if (action != null) {
 			switch (action) {		
@@ -82,6 +85,9 @@ public class UserManager extends HttpServlet {
 			case "directToRegister": // Register is clicked in login.jsp
 				url = base + "register.jsp";
 				break;
+			case "directToAdmin": // Admin Login is clicked in login.jsp
+				url = base + "adminLogin.jsp";
+				break;
 			case "login": // SignIn is clicked in login.jsp
 				validate(request, response, username, password);
 				url = base + "validation.jsp";
@@ -91,6 +97,13 @@ public class UserManager extends HttpServlet {
 					url = base + "home.jsp"; // Direct to Home
 				} else { // otherwise
 					url = base + "register.jsp"; // Direct to the login page
+				}
+				break;
+			case "adminLogin": // For admin
+				if (validateAdmin(request, response, adminId, password) || status.equals("loggedin")) {
+					url = base + "adminSalesHistory.jsp"; // Direct to the admin page
+				} else {
+					url = base + "login.jsp"; // Direct to the login page
 				}
 				break;
 			}
@@ -114,6 +127,29 @@ public class UserManager extends HttpServlet {
 		} catch (Exception e) {
 			System.out.println(e);
 		}
+	}
+	
+	private boolean validateAdmin(HttpServletRequest request, HttpServletResponse response, String id, String password) throws ServletException, IOException {
+		boolean validated = false;
+		try {
+			Admin admin = new Admin();
+			UserDAO userDao = new UserDAOImpl();
+			admin = userDao.findAdmin(id, password);
+			
+			String adminId = admin.getId();
+			if (adminId != "" && adminId != null) { // Logged in successfully
+				HttpSession session = request.getSession();
+				session.setAttribute("adminLoginName", admin.getId()); // TODO: Show this name somewhere on the page?
+				request.setAttribute("foundAdmin", admin);
+				validated = true;
+			} else {
+				String message = "Customer Login is Here";
+				request.setAttribute("notValidated", message);
+			}
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		return validated;
 	}
 	
 	private void logoutUser(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

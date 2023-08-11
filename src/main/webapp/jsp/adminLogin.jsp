@@ -19,27 +19,19 @@
 		<jsp:include page="leftColumn.jsp" flush="true" />
 		
 		<div class="user_input">
-			<div class="ui_item"><span style="font-weight: bold;">Sign In Here</span></div>
-			<c:set var="msg" value="${notValidated}" /> <!-- Modify here? -->
-			<c:out value="${msg}" />
+			<div class="ui_item"><span style="font-weight: bold;">Login Here</span></div>
 		
 		<form action="UserManager" method="POST">
 			<div class="ui">
-			Username or Email:  <input type="hidden" name="action" value="login" />
-			<input id="text" type="text" name="username" size="20" /> <span class="tooltip_message">?</span>
+			Admin ID:  <input type="hidden" name="action" value="adminLogin" />
+			<input id="text" type="text" name="id" size="20" />
 			</div>
 			<div class="ui">
-			Password:  <input type="hidden" name="action" value="login" />
-			<input id="text" type="password" name="password" size="12" /> <span class="tooltip_message">?</span>
+			Admin Password:  <input type="hidden" name="action" value="adminLogin" />
+			<input id="text" type="password" name="password" size="12" />
 			</div>
 		<div class="ui"><input id="submit" type="submit" value="Sign In" /></div>
 		</form>
-		
-			<p style="font-weight: bold;">Or register here: 
-			<a href="${initParam.param2}?action=directToRegister"><span>Register</span></a></p>
-			
-			<p style="font-weight: bold;">For Admin: 
-			<a href="${initParam.param2}?action=directToAdmin"><span>Admin Login</span></a></p>
 		</div>
 	</div>
 	
