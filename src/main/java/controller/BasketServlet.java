@@ -91,7 +91,7 @@ public class BasketServlet extends HttpServlet {
 			        out.println("<p>Your basket is empty</p>");
 			    } 
 		    	else {
-		    		RequestDispatcher requestDispatcher = request.getRequestDispatcher("/jsp/checkout.jsp");
+		    		RequestDispatcher requestDispatcher = request.getRequestDispatcher("/jsp/basket.jsp");
 		    		requestDispatcher.include(request, response);
 		    	}
 		    } finally {

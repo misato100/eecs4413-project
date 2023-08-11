@@ -227,10 +227,10 @@ public class GroceryDAOImpl implements GroceryDAO {
 		grocery = new Grocery(id, name, price);
 		return grocery;
 	}
-	
+
 	public Grocery searchByName(String name) {
 		Grocery grocery = new Grocery();
-		
+
 		String sql = "SELECT grocery.id as grocery_id, grocery.name, country.id as country_id, country.name, category.id as category_id, category.category_description, grocery.price"
 				+ " FROM grocery"
 				+ " INNER JOIN country, category ON grocery.country_id = country.id AND grocery.category_id = category.id"
@@ -250,7 +250,6 @@ public class GroceryDAOImpl implements GroceryDAO {
 		} finally {
 			closeConnection(connection);
 		}
-
 		return grocery;
 	}
 	
@@ -259,7 +258,7 @@ public class GroceryDAOImpl implements GroceryDAO {
 			country.setId(rs.getInt("country_id"));
 			country.setGroceryId(rs.getInt("grocery_id"));
 			country.setName(rs.getString(4));
-			
+
 			grocery.setId(rs.getInt("grocery_id"));
 			grocery.setCategoryId(rs.getInt("category_id"));
 			grocery.setName(rs.getString("name"));
@@ -272,4 +271,3 @@ public class GroceryDAOImpl implements GroceryDAO {
 			e.printStackTrace();
 		}
 	}
-}

@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Checkout</title>
+<title>Basket</title>
 <script src="grocerystore.js"></script>
 </head>
 <body>
