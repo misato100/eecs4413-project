@@ -37,7 +37,7 @@ public class GroceryController extends HttpServlet {
 		
 		ServletContext context =  this.getServletContext();
 		context.setAttribute("categoryList", categoryList);
-		context.setAttribute("allGroceries", allGroceries);
+		context.setAttribute("allGroceries", allGroceries);;
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -118,5 +118,15 @@ public class GroceryController extends HttpServlet {
 			System.out.println(e);
 		}
 	}
-
+	
+	private void findGroceryDetails(HttpServletRequest request, HttpServletResponse response, String keyWord) throws ServletException, IOException {
+		try {
+			Grocery grocery = new Grocery();
+			GroceryDAO groceryDao = new GroceryDAOImpl();
+			grocery = groceryDao.searchByName(keyWord);
+			request.setAttribute("groceryDetails", grocery);
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+	}
 }
