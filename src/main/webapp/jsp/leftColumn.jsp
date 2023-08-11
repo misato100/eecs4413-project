@@ -23,7 +23,7 @@
 			
 		<li><span class="tab_title">Categories</span>
 			<ul style="padding: 5px;">
-			  <c:forEach items="${categoryList}" var="item"> 		     
+			  <c:forEach items="${categoryList}" var="item">
 				<li style="background-color: #3d3d3d; margin: 5px 10px; padding: 5px;">
 				<a class="tab" href="${initParam.param1}?action=category&categoryId=${item.id}&category=${item.categoryDescription}">
 				<span>${item.categoryDescription}</span></a>
@@ -41,8 +41,3 @@
 
 </div>
 </body>
-
-
-
-
-

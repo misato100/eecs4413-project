@@ -37,3 +37,10 @@ function addOne(num) {
 	value++;
 	document.getElementById('qty'+num).value = value;
 }
+
+function changeShipping(num, subtotal) {
+	var shipping = document.getElementById("shipping");
+	var total = document.getElementById("total");
+	shipping.innerHTML = num;
+	total.innerHTML = subtotal + num;
+}

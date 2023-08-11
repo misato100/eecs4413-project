@@ -203,24 +203,7 @@ public class GroceryDAOImpl implements GroceryDAO {
 		}
 	}
 	
-	public void setCountryAndGrocery(ResultSet rs, Country country, Grocery grocery) {
-		try {
-			country.setId(rs.getInt("country_id"));
-			country.setGroceryId(rs.getInt("grocery_id"));
-			country.setName(rs.getString(4));
-			
-			grocery.setId(rs.getInt("grocery_id"));
-			grocery.setCategoryId(rs.getInt("category_id"));
-			grocery.setName(rs.getString("name"));
-			grocery.setCountry(country);
-			grocery.setCategory(rs.getString("category_description"));
-			grocery.setPrice(rs.getFloat(7));
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-	
+
 	public Grocery searchByID(int id) {
 		Connection connection = null;
 		Grocery grocery = null;
@@ -244,8 +227,50 @@ public class GroceryDAOImpl implements GroceryDAO {
 		}
 		grocery = new Grocery(id, name, price);
 		return grocery;
-
 	}
 
+	public Grocery searchByName(String name) {
+		Grocery grocery = new Grocery();
+
+		String sql = "SELECT grocery.id as grocery_id, grocery.name, country.id as country_id, country.name, category.id as category_id, category.category_description, grocery.price"
+				+ " FROM grocery"
+				+ " INNER JOIN country, category ON grocery.country_id = country.id AND grocery.category_id = category.id"
+				+ " WHERE grocery.name = '" + name + "'";
+
+		Connection connection = null;
+		try {
+			connection = getConnection();
+			PreparedStatement statement = connection.prepareStatement(sql);  
+			ResultSet resultSet = statement.executeQuery();
+			if (resultSet.next()) {
+				Country country = new Country();     
+				setCountryAndGrocery(resultSet, country, grocery);
+			}
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+		} finally {
+			closeConnection(connection);
+		}
+		return grocery;
+	}
+	
+	public void setCountryAndGrocery(ResultSet rs, Country country, Grocery grocery) {
+		try {
+			country.setId(rs.getInt("country_id"));
+			country.setGroceryId(rs.getInt("grocery_id"));
+			country.setName(rs.getString(4));
+
+			grocery.setId(rs.getInt("grocery_id"));
+			grocery.setCategoryId(rs.getInt("category_id"));
+			grocery.setName(rs.getString("name"));
+			grocery.setCountry(country);
+			grocery.setCategory(rs.getString("category_description"));
+			grocery.setPrice(rs.getFloat(7));
+			grocery.setImg("images/" + rs.getString("name").toLowerCase().replace(" ", "") + ".png");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 	
 }

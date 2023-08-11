@@ -13,7 +13,6 @@ public class Grocery {
 	private float price;
 	private String img;
 
-
 	public Grocery() {
 		
 	}
