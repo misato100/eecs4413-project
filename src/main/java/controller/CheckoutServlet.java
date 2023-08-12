@@ -2,6 +2,9 @@ package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -13,7 +16,10 @@ import javax.servlet.http.HttpSession;
 
 import dao.GroceryDAO;
 import dao.GroceryDAOImpl;
+import dao.UserDAO;
+import dao.UserDAOImpl;
 import model.Basket;
+import model.User;
 
 /**
  * Servlet implementation class CheckoutServlet
@@ -54,6 +60,10 @@ public class CheckoutServlet extends HttpServlet {
 		    }
     		RequestDispatcher requestDispatcher = request.getRequestDispatcher("/jsp/checkout.jsp");
     		requestDispatcher.include(request, response);
+    		
+    		// TODO: Add below two lines to completeTransaction.java?
+    		int userId = (int) session.getAttribute("loginId");
+    		updateDatabase(userId, basket);
 	    }
 	}
 
@@ -63,6 +73,16 @@ public class CheckoutServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
+	}
+	
+	// TODO: Add this function to completeTransaction?
+	public void updateDatabase(int id, Basket basket) {
+		try {
+			UserDAO userDao = new UserDAOImpl();
+			userDao.updateDB(id, basket);
+		} catch (Exception e) {
+			System.out.println(e);
+		}		
 	}
 
 }

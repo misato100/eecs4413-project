@@ -106,6 +106,9 @@ public class UserManager extends HttpServlet {
 					url = base + "login.jsp"; // Direct to the login page
 				}
 				break;
+			case "updateDB":
+				System.out.println("UPDATE");
+				break;
 			}
 		}
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher(url);
@@ -122,6 +125,7 @@ public class UserManager extends HttpServlet {
 			int userId = user.getId();
 			if (userId > 0) { // Logged in successfully
 				HttpSession session = request.getSession();
+				session.setAttribute("loginId", user.getId());
 				session.setAttribute("loginName", user.getUsername()); // TODO: Show this name somewhere on the page?
 			}
 		} catch (Exception e) {

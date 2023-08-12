@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 import model.Admin;
+import model.Basket;
 import model.User;
 
 public class UserDAOImpl implements UserDAO {
@@ -142,5 +143,24 @@ public class UserDAOImpl implements UserDAO {
 		}
 		closeConnection(connection);	
 	}
+	
+	@Override
+	public void updateDB(int id, Basket basket) {
+		String sql = "INSERT INTO `basket`"
+				+ " (`user_id`,`total_amount`,`date_placed`)"
+				+ " VALUES (" + id + ",'"+ basket.getTotal() + "', '" + java.time.LocalDate.now() + "')";
+		Connection connection = null;
+		try {
+			connection = getConnection();
+			PreparedStatement stmt = connection.prepareStatement(sql);
+			stmt.executeUpdate();
+			stmt.close();
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+		}
+		closeConnection(connection);	
+	}
+	
+	// TODO: Add basket details to a table. basketDetail as well
 
 }

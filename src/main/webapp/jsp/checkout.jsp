@@ -88,7 +88,7 @@
 	</tr>
 	
 	<tr><td>
-	<input type='submit' value='Complete Purchase!'>
+	<input type='submit' value='Complete Purchase!' />
 	<!-- Optional Guest Checkout? -->
 </td></tr>
 </table>
