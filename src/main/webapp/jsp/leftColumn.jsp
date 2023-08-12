@@ -44,6 +44,9 @@
 		<p style="font-weight: bold;"><a href="${initParam.param2}?action=adminLogin&status=loggedin">Sales History</a></c:when>
         <c:otherwise></c:otherwise>
 	</c:choose>
+	
+	<!-- TODO: Change styling and stuff -->
+	<p style="color: #ffffff">Welcome ${loginName}</p>
 
 </div>
 </body>

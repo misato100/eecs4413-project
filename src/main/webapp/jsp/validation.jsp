@@ -11,7 +11,6 @@
 	<div id="centered">
 
 		<jsp:include page="header.jsp" flush="true" />
-		<br />
 		<jsp:include page="leftColumn.jsp" flush="true" />
 		
 		<div>
