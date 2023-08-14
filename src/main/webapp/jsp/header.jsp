@@ -7,7 +7,7 @@
 <link rel="stylesheet" href="css/grocerystore.css" type="text/css" />
 <script src="js/grocerystore.js"></script>
 <div class="header">
-	<h1>MKS GROCERY STORE</h1>
+	<h1 ><a href="${initParam.param1}" style="color: white;">MKS GROCERY STORE</a></h1>
 	<c:choose>
 		<c:when test="${loginName != null}">
 			<a href="${initParam.param2}?action=seeProfile"> Welcome ${loginName}</a>

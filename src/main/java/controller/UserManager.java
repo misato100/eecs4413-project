@@ -125,7 +125,6 @@ public class UserManager extends HttpServlet {
 				break;
 			}
 		}
-		System.out.println(url);
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher(url);
 		requestDispatcher.include(request, response);
 	}
