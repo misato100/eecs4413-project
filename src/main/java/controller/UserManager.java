@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -50,9 +51,9 @@ public class UserManager extends HttpServlet {
 			// Under "Arguments" tab, there is a section "Working directory"
 			// Change the Default to Other, and set it to the current working directory
 			
-			//Connection conn = DriverManager.getConnection("jdbc:sqlite:/Users/kensu/Downloads/register.db");
+			Connection conn = DriverManager.getConnection("jdbc:sqlite:/Users/kensu/Downloads/register.db");
 			//Connection conn = DriverManager.getConnection("jdbc:sqlite:/Users/seangould/git/eecs4413-project/src/register.db");
-			Connection conn = DriverManager.getConnection("jdbc:sqlite:src/register.db");
+			//Connection conn = DriverManager.getConnection("jdbc:sqlite:src/register.db");
 			PreparedStatement stmt = conn.prepareStatement("select count(*) from users;");
 			ResultSet rs = stmt.executeQuery();
 			while(rs.next()) {
@@ -89,9 +90,19 @@ public class UserManager extends HttpServlet {
 				url = base + "adminLogin.jsp";
 				break;
 			case "login": // SignIn is clicked in login.jsp
-				validate(request, response, username, password);
-				url = base + "validation.jsp";
-				break;
+				//response.setContentType("text/html;charset=UTF-8");
+				PrintWriter out = response.getWriter();
+				if(validate(request, response, username, password)) {
+		    		url = base + "home.jsp";
+					break;
+				}else {
+					out.println("<script type=\"text/javascript\">");  
+		    		out.println("alert('Incorrect username or password!');"); 
+		    		out.println("history.go(-1);");
+		    		out.println("</script>");
+		    		out.close();
+				}
+				
 			case "register": // Register is clicked in register.jsp
 				if (registerUser(request, response, id, username, password, firstname, lastname, email)) { // if registered successfully
 					url = base + "home.jsp"; // Direct to Home
@@ -111,27 +122,28 @@ public class UserManager extends HttpServlet {
 				break;
 			}
 		}
+		System.out.println(url);
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher(url);
-		requestDispatcher.forward(request, response);
+		requestDispatcher.include(request, response);
 	}
 	
-	private void validate(HttpServletRequest request, HttpServletResponse response, String id, String password) throws ServletException, IOException {
+	private boolean validate(HttpServletRequest request, HttpServletResponse response, String id, String password) throws ServletException, IOException {
 		try {
 			User user = new User();
 			UserDAO userDao = new UserDAOImpl();
 			user = userDao.findUser(id, password);
 			request.setAttribute("foundUser", user);
-			
 			int userId = user.getId();
 			if (userId > 0) { // Logged in successfully
 				HttpSession session = request.getSession();
 				session.setAttribute("loginId", user.getId());
 				session.setAttribute("loginName", user.getUsername()); // TODO: Show this name somewhere on the page?
-				
+	    		return true;
 			}
 		} catch (Exception e) {
 			System.out.println(e);
 		}
+		return false;
 	}
 	
 	private boolean validateAdmin(HttpServletRequest request, HttpServletResponse response, String id, String password) throws ServletException, IOException {

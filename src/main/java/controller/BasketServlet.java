@@ -62,7 +62,11 @@ public class BasketServlet extends HttpServlet {
 		    	else if (todo.equals("add") ) {
 		 		    String[] ids = request.getParameterValues("id");       
 		 		    if (ids == null) {
-		 		    	out.println("<h3>No Items Selected!</h3></body></html>");
+			    		out.println("<script type=\"text/javascript\">");  
+			    		out.println("alert('No Items Selected!');");  
+			    		out.println("history.go(-1);");
+			    		out.println("</script>");
+		 		    	//out.println("<h3>No Items Selected!</h3></body></html>");
 		 		        return;
 		 		    }
 		 		    for (String id : ids) {		   
@@ -88,7 +92,12 @@ public class BasketServlet extends HttpServlet {
 			        basket.remove(idInt);
 			    }
 		    	if (basket.isEmpty()) {
-			        out.println("<p>Your basket is empty</p>");
+		    		out.println("<script type=\"text/javascript\">");  
+		    		out.println("alert('Your basket is empty');");  
+		    		out.println("history.go(-1);");
+		    		out.println("</script>");
+			        //out.println("<p>Your basket is empty</p>");
+		    		
 			    } 
 		    	else {
 		    		RequestDispatcher requestDispatcher = request.getRequestDispatcher("/jsp/basket.jsp");
