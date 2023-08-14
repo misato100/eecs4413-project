@@ -19,6 +19,7 @@
 				<option value="ASC2">Alphabetically: A-Z</option>
 				<option value="DESC2">Alphabetically: Z-A</option>
 			</select>
+			<input type='hidden' name='keyWord' value="${param.keyWord}" />
 			<input type='hidden' name='category' value="${param.category}" />
 			<input type="hidden" name="action" value="${param.action}" />
 			<input type="submit" value="Sort" class="trial"/>

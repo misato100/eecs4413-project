@@ -84,14 +84,24 @@ public class GroceryDAOImpl implements GroceryDAO {
 	}
 
 	@Override
-	public List<Grocery> searchGroceriesByKeyword(String keyWord) {
+	public List<Grocery> searchGroceriesByKeyword(String keyWord,String sort) {
 		List<Grocery> result = new ArrayList<Grocery>();
 		
 		String sql = "SELECT grocery.id as grocery_id, grocery.name, country.id as country_id, country.name, category.id as category_id, category.category_description, grocery.price"
 				+ " FROM grocery"
 				+ " INNER JOIN country, category ON grocery.country_id = country.id AND grocery.category_id = category.id"
 				+ " WHERE grocery.name like '%" + keyWord.trim() + "%'";
-
+		if(sort != null) {
+			if(sort.equals("ASC1")) {
+				sql += " ORDER BY grocery.price ASC";
+			}else if(sort.equals("ASC2")) {
+				sql+= " ORDER BY grocery.name ASC";
+			}else if(sort.equals("DESC1")) {
+				sql += " ORDER BY grocery.price DESC"; 
+			}else if(sort.equals("DESC2")){
+				sql += " ORDER BY grocery.name DESC";
+			}
+		}
 		Connection connection = null;
 		try {
 			connection = getConnection();

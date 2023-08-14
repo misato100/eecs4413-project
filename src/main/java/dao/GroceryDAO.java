@@ -7,7 +7,7 @@ import model.Category;
 
 public interface GroceryDAO {
 	public List<Grocery> findAllGroceries(String sort);
-	public List<Grocery> searchGroceriesByKeyword(String keyWord);	
+	public List<Grocery> searchGroceriesByKeyword(String keyWord, String sort);	
 	public List<Category> findAllCategories();
 	public void insert(Grocery grocery);	
 	public void delete(int groceryId);	

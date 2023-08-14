@@ -30,12 +30,16 @@
 					${item.name}</a>
 				</td>
 				<c:set var="row_num" value="${row_num + 1}" scope="page" />
-				<c:if test="${row_num % 7 == 0}">
-					</tr><tr>
-				</c:if> 
+				<c:if test="${row_num % 4 == 0}">
+					</tr>
+					<tr>
+				</c:if>
+					
+				
         	</c:forEach>
+        	</tr>
 		</table>
-		</tr>
+		
 		<!--  
 		<table class="images">
 			<tr>
