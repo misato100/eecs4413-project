@@ -11,7 +11,7 @@ public interface GroceryDAO {
 	public List<Category> findAllCategories();
 	public void insert(Grocery grocery);	
 	public void delete(int groceryId);	
-	public List<Grocery> findGroceriesByCategory(String category);
+	public List<Grocery> findGroceriesByCategory(String category, String sort);
 	public Grocery searchByID(int id);
 	public Grocery searchByName(String name);
 }

@@ -33,8 +33,8 @@ public class GroceryDAOImpl implements GroceryDAO {
 		// Change the Default to Other, and set it to the current working directory
 
 		//return DriverManager.getConnection("jdbc:sqlite:/Users/seangould/git/eecs4413-project/src/groceries.db");
-		//return DriverManager.getConnection("jdbc:sqlite:/Users/kensu/Downloads/groceries.db");
-		return DriverManager.getConnection("jdbc:sqlite:src/groceries.db");
+		return DriverManager.getConnection("jdbc:sqlite:/Users/kensu/Downloads/groceries.db");
+		//return DriverManager.getConnection("jdbc:sqlite:src/groceries.db");
 	}
 	private void closeConnection(Connection connection) {
 		if (connection == null)
@@ -139,13 +139,23 @@ public class GroceryDAOImpl implements GroceryDAO {
 		return result;
 	}
 
-	public List<Grocery> findGroceriesByCategory(String category) {
+	public List<Grocery> findGroceriesByCategory(String category, String sort) {
 		List<Grocery> result = new ArrayList<Grocery>();
 		String sql = "SELECT grocery.id as grocery_id, grocery.name, country.id as country_id, country.name, category.id as category_id, category.category_description, grocery.price"
 				+ " FROM grocery"
 				+ " INNER JOIN country, category ON grocery.country_id = country.id AND grocery.category_id = category.id"
 				+ " WHERE category.category_description = '" + category + "'";
-
+		if(sort != null) {
+			if(sort.equals("ASC1")) {
+				sql += " ORDER BY grocery.price ASC";
+			}else if(sort.equals("ASC2")) {
+				sql+= " ORDER BY grocery.name ASC";
+			}else if(sort.equals("DESC1")) {
+				sql += " ORDER BY grocery.price DESC"; 
+			}else if(sort.equals("DESC2")){
+				sql += " ORDER BY grocery.name DESC";
+			}
+		}
 		Connection connection = null;
 		try {
 			connection = getConnection();

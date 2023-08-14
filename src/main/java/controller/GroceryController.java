@@ -58,7 +58,7 @@ public class GroceryController extends HttpServlet {
 				url = base + "listOfGroceries.jsp";
 				break;
 			case "category":
-				findGroceriesByCategory(request, response, category);
+				findGroceriesByCategory(request, response, category, sort);
 				url = base + "category.jsp?category=" + category;
 				break;
 			case "search":
@@ -97,11 +97,11 @@ public class GroceryController extends HttpServlet {
 		}
 	}
 	
-	private void findGroceriesByCategory(HttpServletRequest request, HttpServletResponse response, String cate) throws ServletException, IOException {
+	private void findGroceriesByCategory(HttpServletRequest request, HttpServletResponse response, String cate, String sort) throws ServletException, IOException {
 		try {
 			List<Grocery> groceryList = new ArrayList<Grocery>();
 			GroceryDAO groceryDao = new GroceryDAOImpl();
-			groceryList = groceryDao.findGroceriesByCategory(cate);
+			groceryList = groceryDao.findGroceriesByCategory(cate, sort);
 			request.setAttribute("groceryList", groceryList);
 		} catch (Exception e) {
 			System.out.println(e);

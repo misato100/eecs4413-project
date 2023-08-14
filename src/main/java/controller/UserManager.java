@@ -99,7 +99,7 @@ public class UserManager extends HttpServlet {
 					url = base + "register.jsp"; // Direct to the login page
 				}
 				break;
-			case "adminLogin": // For admin
+			case "adminLogin": // For admin	
 				if (validateAdmin(request, response, adminId, password) || status.equals("loggedin")) {
 					url = base + "adminSalesHistory.jsp"; // Direct to the admin page
 				} else {

@@ -26,8 +26,8 @@ public class UserDAOImpl implements UserDAO {
 		// Change the Default to Other, and set it to the current working directory
 
 		//return DriverManager.getConnection("jdbc:sqlite:/Users/seangould/git/eecs4413-project/src/register.db");
-		//return DriverManager.getConnection("jdbc:sqlite:/Users/kensu/Downloads/register.db");
-		return DriverManager.getConnection("jdbc:sqlite:src/register.db");
+		return DriverManager.getConnection("jdbc:sqlite:/Users/kensu/Downloads/register.db");
+		//return DriverManager.getConnection("jdbc:sqlite:src/register.db");
 	}
 	
 	private void closeConnection(Connection connection) {
