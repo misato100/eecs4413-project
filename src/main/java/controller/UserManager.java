@@ -120,6 +120,9 @@ public class UserManager extends HttpServlet {
 			case "updateDB":
 				System.out.println("UPDATE");
 				break;
+			case "seeProfile":
+				url = base + "profile.jsp";
+				break;
 			}
 		}
 		System.out.println(url);
@@ -138,6 +141,7 @@ public class UserManager extends HttpServlet {
 				HttpSession session = request.getSession();
 				session.setAttribute("loginId", user.getId());
 				session.setAttribute("loginName", user.getUsername()); // TODO: Show this name somewhere on the page?
+				session.setAttribute("user", user);
 	    		return true;
 			}
 		} catch (Exception e) {
