@@ -43,5 +43,6 @@ function changeShipping(num, subtotal) {
 	var total = document.getElementById("total");
 	shipping.innerHTML = "Shipping:" + num + ".00";
 	var final = subtotal + num;
+	final = Math.round(final * 100) / 100;
 	total.innerHTML = "Total: " + final;
 }

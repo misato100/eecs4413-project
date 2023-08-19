@@ -33,11 +33,31 @@
 	
 	<filter>
   		<filter-name>f1</filter-name>
-  		<filter-class>AddressFilter</filter-class>
+  		<filter-class>filters/AddressFilter</filter-class>
  	</filter>
   
   	<filter-mapping>
   		<filter-name>f1</filter-name>
+  		<url-pattern>/CompleteTransaction</url-pattern>
+ 	</filter-mapping>
+ 	
+ 	<filter>
+  		<filter-name>f2</filter-name>
+  		<filter-class>filters/ShippingMethodFilter</filter-class>
+ 	</filter>
+  
+  	<filter-mapping>
+  		<filter-name>f2</filter-name>
+  		<url-pattern>/CompleteTransaction</url-pattern>
+ 	</filter-mapping>
+ 	
+ 	<filter>
+  		<filter-name>f3</filter-name>
+  		<filter-class>filters/CCAuthorizationFilter</filter-class>
+ 	</filter>
+  
+  	<filter-mapping>
+  		<filter-name>f3</filter-name>
   		<url-pattern>/CompleteTransaction</url-pattern>
  	</filter-mapping>
  	 

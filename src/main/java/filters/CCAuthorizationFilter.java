@@ -1,4 +1,4 @@
-
+package filters;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -14,15 +14,15 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpFilter;
 
 /**
- * Servlet Filter implementation class AddressFilter
+ * Servlet Filter implementation class CCAuthorizationFilter
  */
-@WebFilter("/AddressFilter")
-public class AddressFilter extends HttpFilter implements Filter {
+@WebFilter("/CCAuthorizationFilter")
+public class CCAuthorizationFilter extends HttpFilter implements Filter {
        
     /**
      * @see HttpFilter#HttpFilter()
      */
-    public AddressFilter() {
+    public CCAuthorizationFilter() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -44,13 +44,12 @@ public class AddressFilter extends HttpFilter implements Filter {
     	PrintWriter out = response.getWriter();
     	RequestDispatcher requestDispatcher;
     	
-		String addr = request.getParameter("address");
-    	String city = request.getParameter("city");
-    	String prov = request.getParameter("province");
-    	String code = request.getParameter("code");
-
-		
-		if (!addr.isEmpty() && !city.isEmpty() && !prov.isEmpty() && !code.isEmpty()) {
+		String cc = request.getParameter("cc");
+    	String month = request.getParameter("month");
+    	String year = request.getParameter("year");
+    	String ver = request.getParameter("verification");
+    	
+		if (cc.length() == 16 && !month.isEmpty() && !year.isEmpty() && ver.length() == 3) {
     		chain.doFilter(request, response);
         	
     	} else {
@@ -61,19 +60,19 @@ public class AddressFilter extends HttpFilter implements Filter {
     		
     		requestDispatcher = request.getRequestDispatcher("/jsp/leftColumn.jsp");
     		requestDispatcher.include(request, response);
+    		
+    		out.println("<div class='center'><b style='color:red;'>Credit Card Authorization Failed</b>" +"</div>");
+    		
+    		if (cc.length() != 16) {
+        		out.println("<div class='center'><b style='color:red;'>Credit Card Number must be 16 digits</b>" +"</div>");
+        	}
+    		if (ver.length() != 3) {
+        		out.println("<div class='center'><b style='color:red;'>Verification Number must be 3 digits</b>" +"</div>");
+        	}
+    		
+    		requestDispatcher = request.getRequestDispatcher("/jsp/checkout.jsp");
+    		requestDispatcher.include(request, response);
     	}
-		if (addr.isEmpty()) {
-    		out.println("<div class='center'><b style='color:red;'>Address cannot be empty</b>" +"</div>");
-    	}
-		if (city.isEmpty()) {
-    		out.println("<div class='center'><b style='color:red;'>City cannot be empty</b>" +"</div>");
-    	}
-		if (code.isEmpty()) {
-    		out.println("<div class='center'><b style='color:red;'>Postal Code cannot be empty</b>" +"</div>");
-    	}
-		
-		requestDispatcher = request.getRequestDispatcher("/jsp/checkout.jsp");
-		requestDispatcher.include(request, response);
 	}
 
 	/**

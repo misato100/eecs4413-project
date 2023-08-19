@@ -49,11 +49,11 @@
 
 <fieldset>
 	<legend>2. Shipping Method</legend>
-	<input onclick="changeShipping(6.00, ${basket.total})" type="radio" name="method" value="regular"> Regular(4-5 days)      <b>$6.00</b> <br>
-	<input onclick="changeShipping(10.00, ${basket.total})" type="radio" name="method" value="express"> Express(2-3 days)      <b>$10.00</b> <br>
+	<input onclick="changeShipping(6.00, ${basket.total})" type="radio" name="method" value="Regular"> Regular(4-5 days)      <b>$6.00</b> <br>
+	<input onclick="changeShipping(10.00, ${basket.total})" type="radio" name="method" value="Express"> Express(2-3 days)      <b>$10.00</b> <br>
 	<c:choose>
 		<c:when test="${basket.total > 100}">
-			<input onclick="changeShipping(0.00, ${basket.total})" type="radio" name="method" value="free"> Free Express(For orders over $100)   <b>$0.00</b>
+			<input onclick="changeShipping(0.00, ${basket.total})" type="radio" name="method" value="Express (Free)"> Free Express(For orders over $100)   <b>$0.00</b>
 		</c:when>
 		<c:otherwise> Add $<fmt:formatNumber type="number" maxFractionDigits="2" value="${100- basket.total}"/> to your basket to qualify for free shipping!
 		</c:otherwise>
@@ -64,13 +64,22 @@
 <fieldset>
 	<legend>3. Payment Method</legend>
 	<p>Credit Card Number: 
-		<input type="text" class="input" name="cc">
+		<input type="text" class="input" name="cc" size="17" maxlength="16">
 	</p>
 	<p>Expiry Date: 
-		<input type="text" class="input" name="expiry">
+		<select name="month">
+			<c:forEach var="item" begin="1" end="12">
+				<option value="${item}">${item}</option>
+			</c:forEach>
+		</select>
+		<select name="year">
+			<c:forEach var="item" begin="2023" end="2043">
+				<option value="${item}">${item}</option>
+			</c:forEach>
+		</select>
 	</p>
 	<p>Card Verification Number: 
-		<input type="text" class="input" name="verification">
+		<input type="text" class="input" name="verification" size="3" maxlength="3">
 	</p>
 </fieldset>
 

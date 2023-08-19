@@ -21,14 +21,14 @@
 
 <div class="center">
 Your order is on the way to: <br>
-<%= request.getParameter("address") %>, <br>
-<%= request.getParameter("city") %>, <%= request.getParameter("province") %>, <br>
+<%= request.getParameter("address") %> <br>
+<%= request.getParameter("city") %>, <%= request.getParameter("province") %> <br>
 <%= request.getParameter("code") %> <br>
 </div>
 
 <div class="center">
 
-Shipping speed: <%= request.getParameter("method") %> <br>
+Shipping Method: <%= request.getParameter("method") %> <br>
 </div>
 
 <div class="center">
