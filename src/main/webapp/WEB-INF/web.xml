@@ -30,4 +30,15 @@
 		<welcome-file>default.jsp</welcome-file>
 		<welcome-file>groceries</welcome-file>
 	</welcome-file-list>
+	
+	<filter>
+  		<filter-name>f1</filter-name>
+  		<filter-class>AddressFilter</filter-class>
+ 	</filter>
+  
+  	<filter-mapping>
+  		<filter-name>f1</filter-name>
+  		<url-pattern>/CompleteTransaction</url-pattern>
+ 	</filter-mapping>
+ 	 
 </web-app>

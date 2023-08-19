@@ -29,6 +29,8 @@ public class Basket {
 			  basket.add(g);
 		  }
 		  this.total += price * qtyOrdered;
+		  double rounded  = Math.round(this.total * 100.0) / 100.0;
+		  this.total = (float) rounded;
 	}
 	
 	 public void update(int id, int newQty) {
@@ -45,6 +47,8 @@ public class Basket {
 		for (Grocery item: basket) {
 			this.total += item.getPrice()*item.getQtyOrdered();
 		}
+		  double rounded  = Math.round(this.total * 100.0) / 100.0;
+		  this.total = (float) rounded;
 		
 	}
 

@@ -41,6 +41,7 @@ function addOne(num) {
 function changeShipping(num, subtotal) {
 	var shipping = document.getElementById("shipping");
 	var total = document.getElementById("total");
-	shipping.innerHTML = num;
-	total.innerHTML = subtotal + num;
+	shipping.innerHTML = "Shipping:" + num + ".00";
+	var final = subtotal + num;
+	total.innerHTML = "Total: " + final;
 }

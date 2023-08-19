@@ -58,7 +58,13 @@ public class CheckoutServlet extends HttpServlet {
 		            session.setAttribute("basket", basket);
 		         }
 		    }
-    		RequestDispatcher requestDispatcher = request.getRequestDispatcher("/jsp/checkout.jsp");
+    		RequestDispatcher requestDispatcher = request.getRequestDispatcher("/jsp/header.jsp");
+    		requestDispatcher.include(request, response);
+    		
+    		requestDispatcher = request.getRequestDispatcher("/jsp/leftColumn.jsp");
+    		requestDispatcher.include(request, response);
+    		
+    		requestDispatcher = request.getRequestDispatcher("/jsp/checkout.jsp");
     		requestDispatcher.include(request, response);
     		
     		// TODO: Add below two lines to completeTransaction.java?

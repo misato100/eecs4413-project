@@ -10,11 +10,10 @@
 <body>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <div class="main">
-	<jsp:include page="header.jsp" flush="true" />
-		
-	<jsp:include page="leftColumn.jsp" flush="true" />
+
 
 <div class="center">
 <form method="get" action="CompleteTransaction">
@@ -56,7 +55,7 @@
 		<c:when test="${basket.total > 100}">
 			<input onclick="changeShipping(0.00, ${basket.total})" type="radio" name="method" value="free"> Free Express(For orders over $100)   <b>$0.00</b>
 		</c:when>
-		<c:otherwise> Add $${100- basket.total} to your basket to qualify for free shipping!
+		<c:otherwise> Add $<fmt:formatNumber type="number" maxFractionDigits="2" value="${100- basket.total}"/> to your basket to qualify for free shipping!
 		</c:otherwise>
 	</c:choose>
 	
@@ -80,8 +79,8 @@
 	<tr><th align =''>Summary</th></tr>
 	
 	<tr><td> Subtotal: ${basket.total} <br>
-			 Shipping: <div id="shipping">---</div> <br>
-			 Total: <div id="total">${basket.total}</div> </td>
+			 <div id="shipping">Shipping: ---</div>
+			 <div id="total">Total: ${basket.total}</div> </td>
 	</tr>
 	
 	<tr><td>
