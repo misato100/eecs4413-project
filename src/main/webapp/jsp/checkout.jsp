@@ -17,7 +17,7 @@
 	<jsp:include page="leftColumn.jsp" flush="true" />
 
 <div class="center">
-<form>
+<form method="get" action="CompleteTransaction">
 <fieldset>
 	<legend>1. Shipping Information</legend>
 	<p>Address: 
@@ -74,10 +74,7 @@
 		<input type="text" class="input" name="verification">
 	</p>
 </fieldset>
-</form>
-</div>
 
-<form method="get" action="completeTransaction">
 <div class="center">
 <table border='1' cellpadding ='6'>
 	<tr><th align =''>Summary</th></tr>
@@ -94,6 +91,9 @@
 </table>
 </div>
 </form>
+
+</div>
+</div>
 
 </body>
 </html>

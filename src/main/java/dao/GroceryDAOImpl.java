@@ -33,8 +33,8 @@ public class GroceryDAOImpl implements GroceryDAO {
 		// Change the Default to Other, and set it to the current working directory
 
 		//return DriverManager.getConnection("jdbc:sqlite:/Users/seangould/git/eecs4413-project/src/groceries.db");
-		return DriverManager.getConnection("jdbc:sqlite:/Users/kensu/Downloads/groceries.db");
-		//return DriverManager.getConnection("jdbc:sqlite:src/groceries.db");
+		//return DriverManager.getConnection("jdbc:sqlite:/Users/kensu/Downloads/groceries.db");
+		return DriverManager.getConnection("jdbc:sqlite:src/groceries.db");
 	}
 	private void closeConnection(Connection connection) {
 		if (connection == null)

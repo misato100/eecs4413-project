@@ -82,6 +82,7 @@ public class Basket {
 	 
 	   public void clear() {
 	      basket.clear();
+	      this.total = 0;
 	   }
 	   
 	   public float getTotal( ) {
