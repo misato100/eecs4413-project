@@ -60,5 +60,10 @@
   		<filter-name>f3</filter-name>
   		<url-pattern>/CompleteTransaction</url-pattern>
  	</filter-mapping>
+ 	
+ 	<listener>
+  		<description>Sales History Listener</description>
+  		<listener-class>listeners/SalesHistoryListener</listener-class>
+  	</listener>
  	 
 </web-app>

@@ -45,6 +45,7 @@ public class CompleteTransaction extends HttpServlet {
 	            session.setAttribute("basket", basket);
 	         }
 	    }
+	    request.setAttribute("updateSalesHistory", basket);
 	    basket.clear();
 	}
 
