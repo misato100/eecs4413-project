@@ -60,7 +60,7 @@ public class BasketServlet extends HttpServlet {
 		    	String todo = request.getParameter("todo");
 		    	if (todo == null) {}
 		    	else if (todo.equals("add") ) {
-		 		    String[] ids = request.getParameterValues("id");       
+		 		    String[] ids = request.getParameterValues("id");
 		 		    if (ids == null) {
 			    		out.println("<script type=\"text/javascript\">");  
 			    		out.println("alert('No Items Selected!');");  

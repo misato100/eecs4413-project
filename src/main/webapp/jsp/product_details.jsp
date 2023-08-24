@@ -25,7 +25,14 @@
 			<h2><b>$${grocery.price}</b></h2>
 			<p>Brand: <b>${grocery.brand}</b></p>
 			<p>Category: <b>${grocery.category}</b></p>
-			<p>Country: <b>${grocery.country.name}</b></p>		
+			<p>Country: <b>${grocery.country.name}</b></p>
+			
+			<form method="get" action="BasketServlet" class="form">
+				<input type ='textbox' name = "qty${grocery.getId()}" value = '1' size = '5'/>
+				<input type="hidden" name="id" value="${grocery.getId()}" />
+				<input type='hidden' name='todo' value='add' />
+				<input type='submit' value='ADD' />
+			</form>
 		</div>
 	</div>
 	
