@@ -15,7 +15,7 @@ $(document).ready(function() {
 
 $(document).ready(function () {
 	  $("span.tooltip_message").hover(function () {
-	    $(this).append('<div class="message"><p>Search by Keyword in:<ul><li>Author First Name </li><li>Author Last Name <li>Title of the book </li></ul></p></div>');
+	    $(this).append('<div class="message"><p>Search by Name</p></div>');
 	  },function () {
 	    $("div.message").remove();
 	  });/*

@@ -33,8 +33,6 @@ public class GroceryDAOImpl implements GroceryDAO {
 		// Under "Arguments" tab, there is a section "Working directory"
 		// Change the Default to Other, and set it to the current working directory
 
-		//return DriverManager.getConnection("jdbc:sqlite:/Users/seangould/git/eecs4413-project/src/groceries.db");
-		//return DriverManager.getConnection("jdbc:sqlite:/Users/kensu/Downloads/groceries.db");
 		return DriverManager.getConnection("jdbc:sqlite:src/groceries.db");
 	}
 	private void closeConnection(Connection connection) {
@@ -358,7 +356,7 @@ public class GroceryDAOImpl implements GroceryDAO {
 			grocery.setCountry(country);
 			grocery.setCategory(rs.getString("category_description"));
 			grocery.setBrand(rs.getString("brand_name"));
-			grocery.setPrice(rs.getFloat(7));
+			grocery.setPrice(rs.getFloat("price"));
 			grocery.setImg("images/" + rs.getString("name").toLowerCase().replace(" ", "") + ".png");
 			grocery.setBrand(rs.getString(8));
 		} catch (SQLException e) {

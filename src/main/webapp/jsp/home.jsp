@@ -39,21 +39,6 @@
         	</c:forEach>
         	</tr>
 		</table>
-		
-		<!--  
-		<table class="images">
-			<tr>
-				<td><a href="${initParam.param1}?action=productDetails">Cucumber<span class="tooltip_img1"><img src="${initParam.imageURL}/cucumber.png"/></span></a></td>
-				<td>Green Onion<img src="${initParam.imageURL}/greenonion.png" /></td>
-				<td>Lemon<img src="${initParam.imageURL}/lemon.png" /></td>
-			</tr>
-			<tr>
-				<td>Watermelon<img src="${initParam.imageURL}/watermelon.png" /></td>
-				<td>Ground Beef<img src="${initParam.imageURL}/leangroundbeef.png" /></td>
-				<td>Chicken Breast<img src="${initParam.imageURL}/bonelesschickenbreast.png" /></td>
-			</tr>
-		</table>
-		-->
 		</div>
 	</div>
 </body>

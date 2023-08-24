@@ -42,10 +42,10 @@
 			</ul></li>
 	</ul>
 	
+	<p style="color: white;">Search By Name Below</p>
 	<form class="search">
 		<span>Search: </span><input type="hidden" name="action" value="search" /> <input id="text"
-			type="text" name="keyWord" size="12" /> <span
-			class="tooltip_message">?</span>
+			type="text" name="keyWord" size="12" />
 		<input id="submit" type="submit" value="Search" />
 	</form>
 	
@@ -55,8 +55,7 @@
         <c:otherwise></c:otherwise>
 	</c:choose>
 	
-	<!-- TODO: Change styling and stuff -->
-	<p style="color: #ffffff">Welcome ${loginName}</p>
+	<h2 style="color: #ffffff;">Welcome ${loginName}</h2>
 
 </div>
 </body>

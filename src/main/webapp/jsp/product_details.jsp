@@ -18,13 +18,14 @@
 		<jsp:include page="header.jsp" flush="true" />
 		<jsp:include page="leftColumn.jsp" flush="true" />
 		
-		<div class="center" style="display: block;">
+		<div class="center" style="display: block;margin-top: 5px;">
 			<c:set var="grocery" value="${requestScope.groceryDetails}" />
 			<img src="${grocery.img}" />
 			<h1>${grocery.name}</h1>
-			<p>${grocery.category}</p>
-			<p>${grocery.country.name}</p>
-			<p>$${grocery.price}</p>
+			<h2><b>$${grocery.price}</b></h2>
+			<p>Brand: <b>${grocery.brand}</b></p>
+			<p>Category: <b>${grocery.category}</b></p>
+			<p>Country: <b>${grocery.country.name}</b></p>		
 		</div>
 	</div>
 	
