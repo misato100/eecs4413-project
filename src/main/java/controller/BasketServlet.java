@@ -92,12 +92,10 @@ public class BasketServlet extends HttpServlet {
 			        basket.remove(idInt);
 			    }
 		    	if (basket.isEmpty()) {
-		    		out.println("<script type=\"text/javascript\">");  
-		    		out.println("alert('Your basket is empty');");  
-		    		out.println("history.go(-1);");
-		    		out.println("</script>");
-			        //out.println("<p>Your basket is empty</p>");
-		    		
+		    		RequestDispatcher requestDispatcher;
+			        //out.println("<div class='center'><b style='color:red;'> Your cart is Empty </b>");
+			        requestDispatcher = request.getRequestDispatcher("/jsp/basket.jsp");
+		    		requestDispatcher.include(request, response);
 			    } 
 		    	else {
 		    		RequestDispatcher requestDispatcher = request.getRequestDispatcher("/jsp/basket.jsp");
