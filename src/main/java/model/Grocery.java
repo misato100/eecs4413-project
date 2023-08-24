@@ -12,7 +12,7 @@ public class Grocery {
 	private int qtyOrdered;
 	private float price;
 	private String img;
-
+	private String brand;
 	public Grocery() {
 		
 	}
@@ -100,6 +100,12 @@ public class Grocery {
 
 	public void setImg(String img) {
 		this.img = img;
+	}
+	public String getBrand() {
+		return this.brand;
+	}
+	public void setBrand(String brand) {
+		this.brand = brand;
 	}
 
 }
