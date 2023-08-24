@@ -257,9 +257,9 @@ public class GroceryDAOImpl implements GroceryDAO {
 	public Grocery searchByName(String name) {
 		Grocery grocery = new Grocery();
 
-		String sql = "SELECT grocery.id as grocery_id, grocery.name, country.id as country_id, country.name, category.id as category_id, category.category_description, grocery.price, grocery.brand"
+		String sql = "SELECT grocery.id as grocery_id, grocery.name, country.id as country_id, country.name, category.id as category_id, category.category_description, grocery.price, brand.name"
 				+ " FROM grocery"
-				+ " INNER JOIN country, category ON grocery.country_id = country.id AND grocery.category_id = category.id"
+				+ " INNER JOIN country, category, brand ON grocery.country_id = country.id AND grocery.category_id = category.id AND grocery.brand_id = brand.id"
 				+ " WHERE grocery.name = '" + name + "'";
 
 		Connection connection = null;
