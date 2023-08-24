@@ -19,7 +19,7 @@
 		<jsp:include page="leftColumn.jsp" flush="true" />
 		
 		<div class="center" style="display: block;">
-			<c:set var="grocery" value="${requestScope.user}" />
+			<c:set var="grocery" value="${sessionScope.user}" />
 			<img src="images/profile.png" />
 			<h1>Username: ${user.username}</h1>
 			<p>Name: ${user.firstname} ${user.lastname}</p>

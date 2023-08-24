@@ -12,12 +12,13 @@
 <body>
 <div class="content">
 			<form action="groceries">		
-			<select name="sort" class="trial" style="margin-left: 250px;" style="margin-right: 0;"  >
-				<option disabled selected> Sort</option>
-				<option value="ASC1" >Price: Lowest to Highest</option>
-				<option value="DESC1">Price: Highest to Lowest</option>
-				<option value="ASC2">Alphabetically: A-Z</option>
-				<option value="DESC2">Alphabetically: Z-A</option>
+			<select name="sort" class="trial" style="margin-left: 250px;" style="margin-right: 0;" >
+				<option disabled selected> ${param.sort}</option>
+				<option value="Price: Lowest to Highest" >Price: Lowest to Highest</option>
+				<option value="Price: Highest to Lowest">Price: Highest to Lowest</option>
+				<option value="Alphabetically: A-Z">Alphabetically: A-Z</option>
+				<option value="Alphabetically: Z-A">Alphabetically: Z-A</option>
+				<option value="Brand">Brand</option>
 			</select>
 			<input type='hidden' name='keyWord' value="${param.keyWord}" />
 			<input type='hidden' name='category' value="${param.category}" />
@@ -39,6 +40,7 @@
 				<th id="th-name">Name</th>
 				<th id="th-country">Country</th>
 				<th id="th-category">Category</th>
+				<th id="th-brand">Brand</th>
 				<th id="th-price">Price</th>
 				<th id="th-qty"> Qty </th>
 				<th id="th-add"> Add to Cart</th>
@@ -52,6 +54,7 @@
 				<td id="grocery-name">${item.name}</td>
 				<td style="text-align:center;">${item.country.name}</td>
 				<td style="text-align:center;">${item.category}</td>
+				<td style="text-align:center;">${item.brand}</td>
 				<td style="text-align:center;">$${item.price}</td>
 				<td><input type ='textbox' name = "qty${item.getId()}" value = '1' size = '5'/></td>
 				<td><input type='checkbox' name='id' value="${item.getId()}"/> <td>

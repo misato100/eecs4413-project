@@ -10,11 +10,10 @@ public class Grocery {
 	private List<Country> countries;
 	private Country country;
 	private String category;
-	private String brand;
 	private int qtyOrdered;
 	private float price;
 	private String img;
-
+	private String brand;
 	public Grocery() {
 		
 	}
@@ -103,20 +102,18 @@ public class Grocery {
 		return category;
 	}
 	
-	public void setBrand(String brand) {
-		this.brand = brand;
-	}
-	
-	public String getBrand() {
-		return brand;
-	}	
-	
 	public String getImg() {
 		return img;
 	}
 
 	public void setImg(String img) {
 		this.img = img;
+	}
+	public String getBrand() {
+		return this.brand;
+	}
+	public void setBrand(String brand) {
+		this.brand = brand;
 	}
 
 }

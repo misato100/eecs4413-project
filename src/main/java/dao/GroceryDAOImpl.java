@@ -53,14 +53,16 @@ public class GroceryDAOImpl implements GroceryDAO {
 				+ " FROM grocery"
 				+ " INNER JOIN country, category, brand ON grocery.country_id = country.id AND grocery.category_id = category.id AND grocery.brand_id = brand.id";
 		if(sort != null) {
-			if(sort.equals("ASC1")) {
+			if(sort.equals("Price: Lowest to Highest")) {
 				sql += " ORDER BY grocery.price ASC";
-			}else if(sort.equals("ASC2")) {
+			}else if(sort.equals("Price: Highest to Lowest")) {
 				sql+= " ORDER BY grocery.name ASC";
-			}else if(sort.equals("DESC1")) {
+			}else if(sort.equals("Alphabetically: A-Z")) {
 				sql += " ORDER BY grocery.price DESC"; 
-			}else if(sort.equals("DESC2")){
+			}else if(sort.equals("Alphabetically: Z-A")){
 				sql += " ORDER BY grocery.name DESC";
+			}else {
+				sql += " ORDER BY brand.name";
 			}
 		}
 		
@@ -93,14 +95,16 @@ public class GroceryDAOImpl implements GroceryDAO {
 				+ " INNER JOIN country, category, brand ON grocery.country_id = country.id AND grocery.category_id = category.id AND grocery.brand_id = brand.id"
 				+ " WHERE grocery.name like '%" + keyWord.trim() + "%'";
 		if(sort != null) {
-			if(sort.equals("ASC1")) {
+			if(sort.equals("Price: Lowest to Highest")) {
 				sql += " ORDER BY grocery.price ASC";
-			}else if(sort.equals("ASC2")) {
+			}else if(sort.equals("Price: Highest to Lowest")) {
 				sql+= " ORDER BY grocery.name ASC";
-			}else if(sort.equals("DESC1")) {
+			}else if(sort.equals("Alphabetically: A-Z")) {
 				sql += " ORDER BY grocery.price DESC"; 
-			}else if(sort.equals("DESC2")){
+			}else if(sort.equals("Alphabetically: Z-A")){
 				sql += " ORDER BY grocery.name DESC";
+			}else {
+				sql += " ORDER BY brand.name";
 			}
 		}
 		Connection connection = null;
@@ -184,14 +188,16 @@ public class GroceryDAOImpl implements GroceryDAO {
 				+ " INNER JOIN country, category, brand ON grocery.country_id = country.id AND grocery.category_id = category.id AND grocery.brand_id = brand.id"
 				+ " WHERE category.category_description = '" + category + "'";
 		if(sort != null) {
-			if(sort.equals("ASC1")) {
+			if(sort.equals("Price: Lowest to Highest")) {
 				sql += " ORDER BY grocery.price ASC";
-			}else if(sort.equals("ASC2")) {
+			}else if(sort.equals("Price: Highest to Lowest")) {
 				sql+= " ORDER BY grocery.name ASC";
-			}else if(sort.equals("DESC1")) {
+			}else if(sort.equals("Alphabetically: A-Z")) {
 				sql += " ORDER BY grocery.price DESC"; 
-			}else if(sort.equals("DESC2")){
+			}else if(sort.equals("Alphabetically: Z-A")){
 				sql += " ORDER BY grocery.name DESC";
+			}else {
+				sql += " ORDER BY brand.name";
 			}
 		}
 		Connection connection = null;
@@ -354,6 +360,7 @@ public class GroceryDAOImpl implements GroceryDAO {
 			grocery.setBrand(rs.getString("brand_name"));
 			grocery.setPrice(rs.getFloat(7));
 			grocery.setImg("images/" + rs.getString("name").toLowerCase().replace(" ", "") + ".png");
+			grocery.setBrand(rs.getString(8));
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
