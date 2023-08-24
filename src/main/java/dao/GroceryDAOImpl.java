@@ -14,6 +14,7 @@ import java.util.List;
 
 import model.Country;
 import model.Grocery;
+import model.Brand;
 import model.Category;
 import model.Country;
 import model.Grocery;
@@ -48,9 +49,9 @@ public class GroceryDAOImpl implements GroceryDAO {
 	public List<Grocery> findAllGroceries(String sort) {
 		List<Grocery> result = new ArrayList<Grocery>();
 		
-		String sql = "SELECT grocery.id as grocery_id, grocery.name, country.id as country_id, country.name, category.id as category_id, category.category_description, grocery.price"
+		String sql = "SELECT grocery.id as grocery_id, grocery.name, country.id as country_id, country.name, category.id as category_id, category.category_description, brand.id as brand_id, brand.name as brand_name, grocery.price"
 				+ " FROM grocery"
-				+ " INNER JOIN country, category ON grocery.country_id = country.id AND grocery.category_id = category.id";
+				+ " INNER JOIN country, category, brand ON grocery.country_id = country.id AND grocery.category_id = category.id AND grocery.brand_id = brand.id";
 		if(sort != null) {
 			if(sort.equals("ASC1")) {
 				sql += " ORDER BY grocery.price ASC";
@@ -87,9 +88,9 @@ public class GroceryDAOImpl implements GroceryDAO {
 	public List<Grocery> searchGroceriesByKeyword(String keyWord,String sort) {
 		List<Grocery> result = new ArrayList<Grocery>();
 		
-		String sql = "SELECT grocery.id as grocery_id, grocery.name, country.id as country_id, country.name, category.id as category_id, category.category_description, grocery.price"
+		String sql = "SELECT grocery.id as grocery_id, grocery.name, country.id as country_id, country.name, category.id as category_id, category.category_description, brand.id as brand_id, brand.name as brand_name, grocery.price"
 				+ " FROM grocery"
-				+ " INNER JOIN country, category ON grocery.country_id = country.id AND grocery.category_id = category.id"
+				+ " INNER JOIN country, category, brand ON grocery.country_id = country.id AND grocery.category_id = category.id AND grocery.brand_id = brand.id"
 				+ " WHERE grocery.name like '%" + keyWord.trim() + "%'";
 		if(sort != null) {
 			if(sort.equals("ASC1")) {
@@ -148,12 +149,39 @@ public class GroceryDAOImpl implements GroceryDAO {
 		}
 		return result;
 	}
+	
+	public List<Brand> findAllBrands() {
+		List<Brand> result = new ArrayList<>();
+		String sql = "SELECT * FROM brand";
+
+		Connection connection = null;
+		try {
+			connection = getConnection();
+			PreparedStatement statement = connection.prepareStatement(sql);
+			ResultSet resultSet = statement.executeQuery();
+			while (resultSet.next()) {
+				Brand brand = new Brand();
+				
+				// populate category bean with needed info
+				brand.setId(resultSet.getInt("id"));
+				brand.setName(resultSet.getString("name"));
+
+				result.add(brand);
+			}
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+		} finally {
+			closeConnection(connection);
+		}
+		return result;
+	}
 
 	public List<Grocery> findGroceriesByCategory(String category, String sort) {
 		List<Grocery> result = new ArrayList<Grocery>();
-		String sql = "SELECT grocery.id as grocery_id, grocery.name, country.id as country_id, country.name, category.id as category_id, category.category_description, grocery.price"
+		String sql = "SELECT grocery.id as grocery_id, grocery.name, country.id as country_id, country.name, category.id as category_id, category.category_description, brand.id as brand_id, brand.name as brand_name, grocery.price"
 				+ " FROM grocery"
-				+ " INNER JOIN country, category ON grocery.country_id = country.id AND grocery.category_id = category.id"
+				//+ " INNER JOIN country, category ON grocery.country_id = country.id AND grocery.category_id = category.id"
+				+ " INNER JOIN country, category, brand ON grocery.country_id = country.id AND grocery.category_id = category.id AND grocery.brand_id = brand.id"
 				+ " WHERE category.category_description = '" + category + "'";
 		if(sort != null) {
 			if(sort.equals("ASC1")) {
@@ -177,6 +205,44 @@ public class GroceryDAOImpl implements GroceryDAO {
 				
 				// populate book and author beans with needed info, and then set author to book
 				setCountryAndGrocery(resultSet, country, grocery);		
+				result.add(grocery);
+			}
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+		} finally {
+			closeConnection(connection);
+		}
+		return result;
+	}
+	
+	public List<Grocery> findGroceriesByBrand(String brand, String sort) {
+		List<Grocery> result = new ArrayList<Grocery>();
+		String sql = "SELECT grocery.id as grocery_id, grocery.name, country.id as country_id, country.name, category.id as category_id, category.category_description, brand.id as brand_id, brand.name as brand_name, grocery.price"
+				+ " FROM grocery"
+				+ " INNER JOIN country, category, brand ON grocery.country_id = country.id AND grocery.category_id = category.id AND grocery.brand_id = brand.id"
+				+ " WHERE brand.name = '" + brand + "'";
+		if(sort != null) {
+			if(sort.equals("ASC1")) {
+				sql += " ORDER BY grocery.price ASC";
+			}else if(sort.equals("ASC2")) {
+				sql+= " ORDER BY grocery.name ASC";
+			}else if(sort.equals("DESC1")) {
+				sql += " ORDER BY grocery.price DESC"; 
+			}else if(sort.equals("DESC2")){
+				sql += " ORDER BY grocery.name DESC";
+			}
+		}
+		Connection connection = null;
+		try {
+			connection = getConnection();
+			PreparedStatement statement = connection.prepareStatement(sql);
+			ResultSet resultSet = statement.executeQuery();
+			while (resultSet.next()) {
+				Grocery grocery = new Grocery();
+				Country country = new Country();
+				
+				// populate book and author beans with needed info, and then set author to book
+				setCountryAndGrocery(resultSet, country, grocery);
 				result.add(grocery);
 			}
 		} catch (SQLException ex) {
@@ -251,9 +317,9 @@ public class GroceryDAOImpl implements GroceryDAO {
 	public Grocery searchByName(String name) {
 		Grocery grocery = new Grocery();
 
-		String sql = "SELECT grocery.id as grocery_id, grocery.name, country.id as country_id, country.name, category.id as category_id, category.category_description, grocery.price"
+		String sql = "SELECT grocery.id as grocery_id, grocery.name, country.id as country_id, country.name, category.id as category_id, category.category_description, brand.id as brand_id, brand.name as brand_name, grocery.price"
 				+ " FROM grocery"
-				+ " INNER JOIN country, category ON grocery.country_id = country.id AND grocery.category_id = category.id"
+				+ " INNER JOIN country, category, brand ON grocery.country_id = country.id AND grocery.category_id = category.id AND grocery.brand_id = brand.id"
 				+ " WHERE grocery.name = '" + name + "'";
 
 		Connection connection = null;
@@ -281,9 +347,11 @@ public class GroceryDAOImpl implements GroceryDAO {
 
 			grocery.setId(rs.getInt("grocery_id"));
 			grocery.setCategoryId(rs.getInt("category_id"));
+			grocery.setBrandId(rs.getInt("brand_id"));
 			grocery.setName(rs.getString("name"));
 			grocery.setCountry(country);
 			grocery.setCategory(rs.getString("category_description"));
+			grocery.setBrand(rs.getString("brand_name"));
 			grocery.setPrice(rs.getFloat(7));
 			grocery.setImg("images/" + rs.getString("name").toLowerCase().replace(" ", "") + ".png");
 		} catch (SQLException e) {

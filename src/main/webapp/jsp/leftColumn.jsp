@@ -30,6 +30,16 @@
 				</li>
               </c:forEach>			
 			</ul></li>
+			
+		<li><span class="tab_title">Brands</span>
+			<ul style="padding: 5px;">
+			  <c:forEach items="${brandList}" var="item">
+				<li style="background-color: #3d3d3d; margin: 5px 10px; padding: 5px;">
+				<a class="tab" href="${initParam.param1}?action=brand&brandId=${item.id}&brand=${item.name}">
+				<span>${item.name}</span></a>
+				</li>
+              </c:forEach>			
+			</ul></li>
 	</ul>
 	
 	<form class="search">

@@ -28,8 +28,8 @@
 <div class="center">
  	<form method='get' action='BasketServlet' class="form">
 	<div>
-		<c:if test="${param.category != null}" > 
-		<span class="label" style="margin-left: 15px;color: #212121"> List of ${param.category}
+		<c:if test="${param.brand != null}" > 
+		<span class="label" style="margin-left: 15px;color: #212121"> List of ${param.brand}
 		</span>
 		</c:if>
 	</div>
@@ -38,7 +38,7 @@
 			<tr>
 				<th id="th-name">Name</th>
 				<th id="th-country">Country</th>
-				<th id="th-category">Category</th>
+				<th id="th-category">Brand</th>
 				<th id="th-price">Price</th>
 				<th id="th-qty"> Qty </th>
 				<th id="th-add"> Add to Cart</th>
@@ -51,7 +51,7 @@
 			<tr>
 				<td id="grocery-name">${item.name}</td>
 				<td style="text-align:center;">${item.country.name}</td>
-				<td style="text-align:center;">${item.category}</td>
+				<td style="text-align:center;">${item.brand}</td>
 				<td style="text-align:center;">$${item.price}</td>
 				<td><input type ='textbox' name = "qty${item.getId()}" value = '1' size = '5'/></td>
 				<td><input type='checkbox' name='id' value="${item.getId()}"/> <td>

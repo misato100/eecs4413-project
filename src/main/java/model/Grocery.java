@@ -5,10 +5,12 @@ import java.util.List;
 public class Grocery {
 	private int id;
 	private int categoryId;
+	private int brandId;
 	private String name;
 	private List<Country> countries;
 	private Country country;
 	private String category;
+	private String brand;
 	private int qtyOrdered;
 	private float price;
 	private String img;
@@ -56,6 +58,14 @@ public class Grocery {
 	public void setCategoryId(int categoryId) {
 		this.categoryId = categoryId;
 	}
+	
+	public int getBrandId() {
+		return brandId;
+	}
+
+	public void setBrandId(int brandId) {
+		this.brandId = brandId;
+	}
 
 	public String getName() {
 		return name;
@@ -93,6 +103,13 @@ public class Grocery {
 		return category;
 	}
 	
+	public void setBrand(String brand) {
+		this.brand = brand;
+	}
+	
+	public String getBrand() {
+		return brand;
+	}	
 	
 	public String getImg() {
 		return img;

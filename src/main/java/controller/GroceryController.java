@@ -17,6 +17,7 @@ import dao.GroceryDAO;
 import dao.GroceryDAOImpl;
 import model.Grocery;
 import model.Category;
+import model.Brand;
 
 @WebServlet({ "/groceries"})
 public class GroceryController extends HttpServlet {
@@ -30,13 +31,16 @@ public class GroceryController extends HttpServlet {
 		GroceryDAO groceryDao = new GroceryDAOImpl();
 		
 		List<Category> categoryList = new ArrayList<Category>();
-		List<Grocery> allGroceries = new ArrayList<Grocery>();
+		List<Brand> brandList = new ArrayList<Brand>();
+		List<Grocery> allGroceries = new ArrayList<Grocery>();	
 		
 		categoryList = groceryDao.findAllCategories();
+		brandList = groceryDao.findAllBrands();
 		allGroceries = groceryDao.findAllGroceries("ASC2");
 		
 		ServletContext context =  this.getServletContext();
 		context.setAttribute("categoryList", categoryList);
+		context.setAttribute("brandList", brandList);
 		context.setAttribute("allGroceries", allGroceries);;
 	}
 
@@ -49,6 +53,7 @@ public class GroceryController extends HttpServlet {
 		String url = base + "home.jsp";
 		String action = request.getParameter("action");
 		String category = request.getParameter("category");
+		String brand = request.getParameter("brand");
 		String keyWord = request.getParameter("keyWord");
 		String sort = request.getParameter("sort");
 		if (action != null) {
@@ -60,6 +65,10 @@ public class GroceryController extends HttpServlet {
 			case "category":
 				findGroceriesByCategory(request, response, category, sort);
 				url = base + "category.jsp?category=" + category;
+				break;
+			case "brand":
+				findGroceriesByBrand(request, response, brand, sort);
+				url = base + "brand.jsp?brand=" + brand;
 				break;
 			case "search":
 				searchGroceries(request, response, keyWord, sort);
@@ -102,6 +111,17 @@ public class GroceryController extends HttpServlet {
 			List<Grocery> groceryList = new ArrayList<Grocery>();
 			GroceryDAO groceryDao = new GroceryDAOImpl();
 			groceryList = groceryDao.findGroceriesByCategory(cate, sort);
+			request.setAttribute("groceryList", groceryList);
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+	}
+	
+	private void findGroceriesByBrand(HttpServletRequest request, HttpServletResponse response, String brand, String sort) throws ServletException, IOException {
+		try {
+			List<Grocery> groceryList = new ArrayList<Grocery>();
+			GroceryDAO groceryDao = new GroceryDAOImpl();
+			groceryList = groceryDao.findGroceriesByBrand(brand, sort);
 			request.setAttribute("groceryList", groceryList);
 		} catch (Exception e) {
 			System.out.println(e);
