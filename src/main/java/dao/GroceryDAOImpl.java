@@ -48,9 +48,9 @@ public class GroceryDAOImpl implements GroceryDAO {
 	public List<Grocery> findAllGroceries(String sort) {
 		List<Grocery> result = new ArrayList<Grocery>();
 		
-		String sql = "SELECT grocery.id as grocery_id, grocery.name, country.id as country_id, country.name, category.id as category_id, category.category_description, grocery.price, grocery.brand"
+		String sql = "SELECT grocery.id as grocery_id, grocery.name, country.id as country_id, country.name, category.id as category_id, category.category_description, grocery.price, brand.name"
 				+ " FROM grocery"
-				+ " INNER JOIN country, category ON grocery.country_id = country.id AND grocery.category_id = category.id";
+				+ " INNER JOIN country, category, brand ON grocery.country_id = country.id AND grocery.category_id = category.id AND grocery.brand_id = brand.id";
 		if(sort != null) {
 			if(sort.equals("Price: Lowest to Highest")) {
 				sql += " ORDER BY grocery.price ASC";
@@ -61,7 +61,7 @@ public class GroceryDAOImpl implements GroceryDAO {
 			}else if(sort.equals("Alphabetically: Z-A")){
 				sql += " ORDER BY grocery.name DESC";
 			}else {
-				sql += " ORDER BY grocery.brand";
+				sql += " ORDER BY brand.name";
 			}
 		}
 		
@@ -89,9 +89,9 @@ public class GroceryDAOImpl implements GroceryDAO {
 	public List<Grocery> searchGroceriesByKeyword(String keyWord,String sort) {
 		List<Grocery> result = new ArrayList<Grocery>();
 		
-		String sql = "SELECT grocery.id as grocery_id, grocery.name, country.id as country_id, country.name, category.id as category_id, category.category_description, grocery.price, grocery.brand"
+		String sql = "SELECT grocery.id as grocery_id, grocery.name, country.id as country_id, country.name, category.id as category_id, category.category_description, grocery.price, brand.name"
 				+ " FROM grocery"
-				+ " INNER JOIN country, category ON grocery.country_id = country.id AND grocery.category_id = category.id"
+				+ " INNER JOIN country, category, brand ON grocery.country_id = country.id AND grocery.category_id = category.id AND grocery.brand_id = brand.id"
 				+ " WHERE grocery.name like '%" + keyWord.trim() + "%'";
 		if(sort != null) {
 			if(sort.equals("Price: Lowest to Highest")) {
@@ -103,7 +103,7 @@ public class GroceryDAOImpl implements GroceryDAO {
 			}else if(sort.equals("Alphabetically: Z-A")){
 				sql += " ORDER BY grocery.name DESC";
 			}else {
-				sql += " ORDER BY grocery.brand";
+				sql += " ORDER BY brand.name";
 			}
 		}
 		Connection connection = null;
@@ -155,9 +155,9 @@ public class GroceryDAOImpl implements GroceryDAO {
 
 	public List<Grocery> findGroceriesByCategory(String category, String sort) {
 		List<Grocery> result = new ArrayList<Grocery>();
-		String sql = "SELECT grocery.id as grocery_id, grocery.name, country.id as country_id, country.name, category.id as category_id, category.category_description, grocery.price, grocery.brand"
+		String sql = "SELECT grocery.id as grocery_id, grocery.name, country.id as country_id, country.name, category.id as category_id, category.category_description, grocery.price, brand.name"
 				+ " FROM grocery"
-				+ " INNER JOIN country, category ON grocery.country_id = country.id AND grocery.category_id = category.id"
+				+ " INNER JOIN country, category, brand ON grocery.country_id = country.id AND grocery.category_id = category.id AND grocery.brand_id = brand.id"
 				+ " WHERE category.category_description = '" + category + "'";
 		if(sort != null) {
 			if(sort.equals("Price: Lowest to Highest")) {
@@ -169,7 +169,7 @@ public class GroceryDAOImpl implements GroceryDAO {
 			}else if(sort.equals("Alphabetically: Z-A")){
 				sql += " ORDER BY grocery.name DESC";
 			}else {
-				sql += " ORDER BY grocery.brand";
+				sql += " ORDER BY brand.name";
 			}
 		}
 		Connection connection = null;
@@ -292,7 +292,7 @@ public class GroceryDAOImpl implements GroceryDAO {
 			grocery.setCategory(rs.getString("category_description"));
 			grocery.setPrice(rs.getFloat(7));
 			grocery.setImg("images/" + rs.getString("name").toLowerCase().replace(" ", "") + ".png");
-			grocery.setBrand(rs.getString("brand"));
+			grocery.setBrand(rs.getString(8));
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
