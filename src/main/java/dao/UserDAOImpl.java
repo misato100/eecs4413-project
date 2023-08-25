@@ -21,13 +21,11 @@ public class UserDAOImpl implements UserDAO {
 	}
 	
 	private Connection getConnection() throws SQLException {
-		// In Eclipse, click "Run Configurations" within "Run" tab
-		// Under "Arguments" tab, there is a section "Working directory"
-		// Change the Default to Other, and set it to the current working directory
-
-		//return DriverManager.getConnection("jdbc:sqlite:/Users/seangould/git/eecs4413-project/src/register.db");
-		//return DriverManager.getConnection("jdbc:sqlite:/Users/kensu/Downloads/register.db");
-		return DriverManager.getConnection("jdbc:sqlite:src/register.db");
+		// Use this line below for running the project on your local machine
+		return DriverManager.getConnection("jdbc:sqlite:src/main/webapp/databases/register.db");
+		
+		// Use this line below for running the project using Docker
+		//return DriverManager.getConnection("jdbc:sqlite:webapps/eecs4413-project/databases/register.db");
 	}
 	
 	private void closeConnection(Connection connection) {

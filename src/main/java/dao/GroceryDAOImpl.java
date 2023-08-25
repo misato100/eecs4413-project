@@ -29,11 +29,11 @@ public class GroceryDAOImpl implements GroceryDAO {
 	}
 
 	private Connection getConnection() throws SQLException {
-		// In Eclipse, click "Run Configurations" within "Run" tab
-		// Under "Arguments" tab, there is a section "Working directory"
-		// Change the Default to Other, and set it to the current working directory
-
-		return DriverManager.getConnection("jdbc:sqlite:src/groceries.db");
+		// Use this line below for running the project on your local machine
+		return DriverManager.getConnection("jdbc:sqlite:src/main/webapp/databases/groceries.db");
+		
+		// Use this line below for running the project using Docker
+		//return DriverManager.getConnection("jdbc:sqlite:webapps/eecs4413-project/databases/groceries.db");
 	}
 	private void closeConnection(Connection connection) {
 		if (connection == null)
