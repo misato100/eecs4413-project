@@ -17,7 +17,7 @@
 		<jsp:include page="leftColumn.jsp" flush="true" />
 <c:choose>
 	<c:when test="${basket.isEmpty() == true}">
-		<div class='center'><b style='color:red;'> Your cart is Empty </b>
+		<div class='center'><b style='color:red;'> Your basket is empty </b>
 		</div>
 	</c:when>
 	<c:otherwise>

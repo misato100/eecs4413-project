@@ -70,8 +70,6 @@ public class UserManager extends HttpServlet {
 		String firstname = request.getParameter("firstname");
 		String lastname = request.getParameter("lastname");
 		String email = request.getParameter("email");
-		String adminId = request.getParameter("id");
-		String status = request.getParameter("status");
 		
 		if (action != null) {
 			switch (action) {		
@@ -85,13 +83,19 @@ public class UserManager extends HttpServlet {
 			case "directToRegister": // Register is clicked in login.jsp
 				url = base + "register.jsp";
 				break;
+			/*	
+			Unused: Log in to admin through login.jsp instead
+			
+			
 			case "directToAdmin": // Admin Login is clicked in login.jsp
 				url = base + "adminLogin.jsp";
 				break;
+			*/
 			case "login": // SignIn is clicked in login.jsp
 				//response.setContentType("text/html;charset=UTF-8");
 				PrintWriter out = response.getWriter();
 				if(validate(request, response, username, password)) {
+					validateAdmin(request, response, username, password);
 		    		url = base + "home.jsp";
 					break;
 				}else {
@@ -101,19 +105,15 @@ public class UserManager extends HttpServlet {
 		    		out.println("</script>");
 		    		out.close();
 				}
+			case "adminLogin": // For admin	
+					url = base + "adminSalesHistory.jsp"; // Direct to the admin page
+				break;
 				
 			case "register": // Register is clicked in register.jsp
 				if (registerUser(request, response, id, username, password, firstname, lastname, email)) { // if registered successfully
 					url = base + "home.jsp"; // Direct to Home
 				} else { // otherwise
 					url = base + "register.jsp"; // Direct to the login page
-				}
-				break;
-			case "adminLogin": // For admin	
-				if (validateAdmin(request, response, adminId, password) || status.equals("loggedin")) {
-					url = base + "adminSalesHistory.jsp"; // Direct to the admin page
-				} else {
-					url = base + "login.jsp"; // Direct to the login page
 				}
 				break;
 			case "updateDB":
@@ -148,8 +148,7 @@ public class UserManager extends HttpServlet {
 		return false;
 	}
 	
-	private boolean validateAdmin(HttpServletRequest request, HttpServletResponse response, String id, String password) throws ServletException, IOException {
-		boolean validated = false;
+	private void validateAdmin(HttpServletRequest request, HttpServletResponse response, String id, String password) throws ServletException, IOException {
 		try {
 			Admin admin = new Admin();
 			UserDAO userDao = new UserDAOImpl();
@@ -160,15 +159,10 @@ public class UserManager extends HttpServlet {
 				HttpSession session = request.getSession();
 				session.setAttribute("adminLoginName", admin.getId()); // TODO: Show this name somewhere on the page?
 				request.setAttribute("foundAdmin", admin);
-				validated = true;
-			} else {
-				String message = "Customer Login is Here";
-				request.setAttribute("notValidated", message);
 			}
 		} catch (Exception e) {
 			System.out.println(e);
 		}
-		return validated;
 	}
 	
 	private void logoutUser(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

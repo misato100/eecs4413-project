@@ -37,9 +37,6 @@
 		
 			<p style="font-weight: bold;">Or register here: 
 			<a href="${initParam.param2}?action=directToRegister"><span>Register</span></a></p>
-			
-			<p style="font-weight: bold;">For Admin: 
-			<a href="${initParam.param2}?action=directToAdmin"><span>Admin Login</span></a></p>
 		</div>
 	</div>
 	

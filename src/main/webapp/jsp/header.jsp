@@ -11,12 +11,21 @@
 	<c:choose>
 		<c:when test="${loginName != null}">
 			<a href="${initParam.param2}?action=seeProfile"> Welcome ${loginName}</a>
+			<a href="${initParam.param2}?action=logout">Log Out</a>
 		</c:when>
 		<c:otherwise>
-			<a href="${initParam.param2}?action=identification">SignIn/SignUp</a>
+			<a href="${initParam.param2}?action=identification">Log In</a>
+			<a href="${initParam.param2}?action=directToRegister">Register</a>
 		</c:otherwise>
 	</c:choose>
 	
-	<a href="${initParam.param2}?action=logout">Logout</a>
-	<a href="${initParam.param3}">View Basket (${basket.totalSize()} items)</a>
+	<c:choose>
+		<c:when test="${basket != null && basket.totalSize() != 0}">
+			<a href="${initParam.param3}">View Basket (${basket.totalSize()} items)</a>
+		</c:when>
+		<c:otherwise>
+			<a href="${initParam.param3}">View Basket</a>
+		</c:otherwise>
+	</c:choose>
+
 </div>
