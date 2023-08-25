@@ -29,4 +29,6 @@ and change the paths for databases by following the instructions within the comm
 ## Instructions on running the project online using Docker:
 1. In your command line,
 ```docker pull mtsz33/web-service:1```
-2. 
+```docker build -t web-service .```
+```docker run -d -p 8080:8080 web-service```
+9. Visit http://localhost:8080/eecs4413-project/
