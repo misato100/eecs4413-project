@@ -88,9 +88,24 @@
 	</tr>
 	
 	<tr><td><form method='get' action='CheckoutServlet'>
-	<input type='submit' value='Checkout Now'>
+	<c:choose>
+		<c:when test="${loginName != null}">
+			<input type='submit' value='Checkout Now'>
+		</c:when>
+		<c:otherwise>
+			<input type='submit' value='Guest Checkout'>
+		</c:otherwise>
+	</c:choose>
+
 	<!-- Optional Guest Checkout? -->
-	</form></td></tr>
+	</form>
+	<c:choose>
+		<c:when test="${loginName == null}">
+		<br>
+			<button onclick="location.href='${initParam.param2}?action=identification'">Log In</button>
+		</c:when>
+	</c:choose>
+	</td></tr>
 </table>
 </div>
 

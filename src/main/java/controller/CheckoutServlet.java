@@ -45,33 +45,30 @@ public class CheckoutServlet extends HttpServlet {
 	    
 	    HttpSession session = request.getSession(true);
 	    
-	    if (session.getAttribute("loginName") == null) { // Redirect to a login page if not logged in
-	    	response.sendRedirect("/eecs4413-project/UserManager?action=identification");
-	    } else {
-	    	GroceryDAO groceryDAO = new GroceryDAOImpl();
-		    Basket basket;
-		    
-		    synchronized (session) {
-		         basket = (Basket) session.getAttribute("basket");
-		         if (basket == null) {
-		            basket = new Basket();
-		            session.setAttribute("basket", basket);
-		         }
-		    }
-    		RequestDispatcher requestDispatcher = request.getRequestDispatcher("/jsp/header.jsp");
-    		requestDispatcher.include(request, response);
-    		
-    		requestDispatcher = request.getRequestDispatcher("/jsp/leftColumn.jsp");
-    		requestDispatcher.include(request, response);
-    		
-    		requestDispatcher = request.getRequestDispatcher("/jsp/checkout.jsp");
-    		requestDispatcher.include(request, response);
-    		
-    		// TODO: Add below two lines to completeTransaction.java?
-    		int userId = (int) session.getAttribute("loginId");
-    		updateDatabase(userId, basket);
+    	GroceryDAO groceryDAO = new GroceryDAOImpl();
+	    Basket basket;
+	    
+	    synchronized (session) {
+	         basket = (Basket) session.getAttribute("basket");
+	         if (basket == null) {
+	            basket = new Basket();
+	            session.setAttribute("basket", basket);
+	         }
 	    }
-	}
+		RequestDispatcher requestDispatcher = request.getRequestDispatcher("/jsp/header.jsp");
+		requestDispatcher.include(request, response);
+		
+		requestDispatcher = request.getRequestDispatcher("/jsp/leftColumn.jsp");
+		requestDispatcher.include(request, response);
+		
+		requestDispatcher = request.getRequestDispatcher("/jsp/checkout.jsp");
+		requestDispatcher.include(request, response);
+		
+		// TODO: Add below two lines to completeTransaction.java?
+		//int userId = (int) session.getAttribute("loginId");
+		//updateDatabase(userId, basket);
+    }
+
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
