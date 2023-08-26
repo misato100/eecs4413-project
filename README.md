@@ -17,18 +17,17 @@ and change the paths for databases by following the instructions within the comm
 and change the paths for databases by following the instructions within the comments (within a doPost method).
 4. Export a war file of the project into your local machine and name it as "eecs4413-project" (This is the same as the project name).
 5. In your command line, direct to the same folder as where the war file resides
-6. ```type nul > Dockerfile ```
+6. Run ```type nul > Dockerfile ```
 7. Open your favorite editor and add
 ```FROM tomcat:9.0-jdk21-openjdk COPY ./eecs4413-project.war /usr/local/tomcat/webapps``` to your Dockerfile.
-8. In your command line,
-```docker pull tomcat:9.0-jdk21-openjdk```
-```docker build -t web-service .```
+8. In your command line, run 
+```docker pull tomcat:9.0-jdk21-openjdk```, 
+```docker build -t web-service .```, and then 
 ```docker run -d -p 8080:8080 web-service```
 9. Visit http://localhost:8080/eecs4413-project/
 
 ## Instructions on running the project online using Docker:
-1. In your command line,
-```docker pull mtsz33/web-service:1```
-```docker build -t web-service .```
-```docker run -d -p 8080:8080 web-service```
+1. In your command line, run 
+```docker pull mtsz33/web-service:1``` and then 
+```docker run -d -p 8080:8080 mtsz33/web-service:1```
 9. Visit http://localhost:8080/eecs4413-project/
