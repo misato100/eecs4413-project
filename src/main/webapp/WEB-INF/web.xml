@@ -70,5 +70,10 @@
 		<description>Sales History Listener</description>
 		<listener-class>listeners/SalesHistoryListener</listener-class>
 	</listener>
+	
+	<listener>
+		<description>Purchase History Listener</description>
+		<listener-class>listeners/PurchaseHistoryListener</listener-class>
+	</listener>
 
 </web-app>

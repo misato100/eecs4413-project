@@ -122,7 +122,11 @@ public class UserManager extends HttpServlet {
 			case "seeProfile":
 				url = base + "profile.jsp";
 				break;
+			case "viewPurchaseHistory":
+				url = base + "purchaseHistory.jsp";
+				break;
 			}
+
 		}
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher(url);
 		requestDispatcher.include(request, response);

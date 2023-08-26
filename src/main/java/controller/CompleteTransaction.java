@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.util.HashMap;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -46,6 +47,12 @@ public class CompleteTransaction extends HttpServlet {
 	         }
 	    }
 	    request.setAttribute("updateSalesHistory", basket);
+	    if (session.getAttribute("loginName") != null) {
+	    	String user = (String) session.getAttribute("loginName");
+	    	HashMap<String, Basket> purchase = new HashMap<String, Basket>();
+	    	purchase.put(user, basket);
+	    	request.setAttribute("updatePurchaseHistory", purchase);
+	    }
 	    basket.clear();
 	}
 

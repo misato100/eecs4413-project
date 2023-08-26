@@ -55,6 +55,12 @@
         <c:otherwise></c:otherwise>
 	</c:choose>
 	
+	<c:choose>
+		<c:when test="${loginName != null}">
+		<p style="font-weight: bold;"><a href="${initParam.param2}?action=viewPurchaseHistory">Purchase History</a></c:when>
+        <c:otherwise></c:otherwise>
+	</c:choose>
+	
 	<h2 style="color: #ffffff;">Welcome ${loginName}</h2>
 
 </div>
