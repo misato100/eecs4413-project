@@ -54,9 +54,9 @@ public class GroceryDAOImpl implements GroceryDAO {
 			if(sort.equals("Price: Lowest to Highest")) {
 				sql += " ORDER BY grocery.price ASC";
 			}else if(sort.equals("Price: Highest to Lowest")) {
-				sql+= " ORDER BY grocery.name ASC";
+				sql+= " ORDER BY grocery.price DESC";
 			}else if(sort.equals("Alphabetically: A-Z")) {
-				sql += " ORDER BY grocery.price DESC"; 
+				sql += " ORDER BY grocery.name ASC"; 
 			}else if(sort.equals("Alphabetically: Z-A")){
 				sql += " ORDER BY grocery.name DESC";
 			}else {
@@ -96,9 +96,9 @@ public class GroceryDAOImpl implements GroceryDAO {
 			if(sort.equals("Price: Lowest to Highest")) {
 				sql += " ORDER BY grocery.price ASC";
 			}else if(sort.equals("Price: Highest to Lowest")) {
-				sql+= " ORDER BY grocery.name ASC";
+				sql+= " ORDER BY grocery.price DESC";
 			}else if(sort.equals("Alphabetically: A-Z")) {
-				sql += " ORDER BY grocery.price DESC"; 
+				sql += " ORDER BY grocery.name ASC"; 
 			}else if(sort.equals("Alphabetically: Z-A")){
 				sql += " ORDER BY grocery.name DESC";
 			}else {
@@ -189,9 +189,9 @@ public class GroceryDAOImpl implements GroceryDAO {
 			if(sort.equals("Price: Lowest to Highest")) {
 				sql += " ORDER BY grocery.price ASC";
 			}else if(sort.equals("Price: Highest to Lowest")) {
-				sql+= " ORDER BY grocery.name ASC";
+				sql+= " ORDER BY grocery.price DESC";
 			}else if(sort.equals("Alphabetically: A-Z")) {
-				sql += " ORDER BY grocery.price DESC"; 
+				sql += " ORDER BY grocery.name ASC"; 
 			}else if(sort.equals("Alphabetically: Z-A")){
 				sql += " ORDER BY grocery.name DESC";
 			}else {
@@ -226,13 +226,13 @@ public class GroceryDAOImpl implements GroceryDAO {
 				+ " INNER JOIN country, category, brand ON grocery.country_id = country.id AND grocery.category_id = category.id AND grocery.brand_id = brand.id"
 				+ " WHERE brand.name = '" + brand + "'";
 		if(sort != null) {
-			if(sort.equals("ASC1")) {
+			if(sort.equals("Price: Lowest to Highest")) {
 				sql += " ORDER BY grocery.price ASC";
-			}else if(sort.equals("ASC2")) {
-				sql+= " ORDER BY grocery.name ASC";
-			}else if(sort.equals("DESC1")) {
-				sql += " ORDER BY grocery.price DESC"; 
-			}else if(sort.equals("DESC2")){
+			}else if(sort.equals("Price: Highest to Lowest")) {
+				sql+= " ORDER BY grocery.price DESC";
+			}else if(sort.equals("Alphabetically: A-Z")) {
+				sql += " ORDER BY grocery.name ASC"; 
+			}else if(sort.equals("Alphabetically: Z-A")){
 				sql += " ORDER BY grocery.name DESC";
 			}
 		}

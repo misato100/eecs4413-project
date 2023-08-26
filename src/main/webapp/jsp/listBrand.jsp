@@ -14,13 +14,13 @@
 			<form action="groceries">		
 			<select name="sort" class="trial" style="margin-left: 250px;" style="margin-right: 0;"  >
 				<option disabled selected> Sort</option>
-				<option value="ASC1" >Price: Lowest to Highest</option>
-				<option value="DESC1">Price: Highest to Lowest</option>
-				<option value="ASC2">Alphabetically: A-Z</option>
-				<option value="DESC2">Alphabetically: Z-A</option>
+				<option value="Price: Lowest to Highest" >Price: Lowest to Highest</option>
+				<option value="Price: Highest to Lowest">Price: Highest to Lowest</option>
+				<option value="Alphabetically: A-Z">Alphabetically: A-Z</option>
+				<option value="Alphabetically: Z-A">Alphabetically: Z-A</option>
 			</select>
 			<input type='hidden' name='keyWord' value="${param.keyWord}" />
-			<input type='hidden' name='category' value="${param.category}" />
+			<input type='hidden' name='brand' value="${param.brand}" />
 			<input type="hidden" name="action" value="${param.action}" />
 			<input type="submit" value="Sort" class="trial"/>
 			</form>
