@@ -1,0 +1,32 @@
+CREATE DATABASE groceries;
+
+CREATE TABLE `groceries`.`brand` (
+	`id` int NOT NULL,
+	`name` varchar(45) NOT NULL,
+	PRIMARY KEY(`id` AUTOINCREMENT)
+);
+
+CREATE TABLE `groceries`.`category` (
+	`id` int NOT NULL,
+	`category_description` varchar(20),
+	PRIMARY KEY(`id`)
+);
+
+CREATE TABLE `groceries`.`country` (
+	`id` int NOT NULL,
+	`name` varchar(255),
+	PRIMARY KEY(`id`)
+);
+
+CREATE TABLE `groceries`.`grocery` (
+	`id` int NOT NULL,
+	`name` varchar(255) NOT NULL,
+	`price` double,
+	`country_id` int,
+	`category_id` int,
+	`brand_id` int,
+	PRIMARY KEY(`id`),
+	FOREIGN KEY(`country_id`) REFERENCES country(`id`),
+	FOREIGN KEY(`category_id`) REFERENCES category(`id`),
+	FOREIGN KEY(`brand_id`) REFERENCES brand(`id`)
+);
